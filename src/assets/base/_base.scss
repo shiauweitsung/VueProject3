@@ -96,6 +96,8 @@ section {
 
 body {
   line-height: 1;
+  background-color: black;
+  position: relative;
 }
 
 h1,
@@ -162,4 +164,16 @@ input[type='number'] {
 
 textarea {
   resize: none;
+}
+
+// content layout
+.wrap {
+  width: 100%;
+  margin-top: 84px;
+}
+
+.content {
+  max-width: 1440px;
+  width: 90%;
+  margin: auto;
 }

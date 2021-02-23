@@ -1,0 +1,12 @@
+$color:(main:#34e89e,
+  second:#fdbb2d,
+  three:#fff,
+  bgcolor:#443f3f, );
+
+.color-main {
+  color: map-get($color, main);
+
+  &:hover {
+    color: map-get($color, second);
+  }
+}

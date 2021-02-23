@@ -66,7 +66,8 @@
         "off"
       ],
       "@typescript-eslint/camelcase": "off",
-      "prefer-const": "off"
+      "prefer-const": "off",
+      "import/no-webpack-loader-syntax": "off"
     }
   },
   "browserslist": [

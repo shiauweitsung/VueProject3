@@ -1,0 +1,132 @@
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background-color: black;
+  padding: 10px 0px;
+  transition: ease-in-out .5s;
+
+  &-wrap {
+    max-width: 1440px;
+    width: 90%;
+    display: flex;
+    margin: auto;
+  }
+
+  &-icon {
+    color: map-get($color, three);
+    flex-basis: 15%;
+    flex-grow: 1;
+    max-width: 15%;
+
+    &-img {
+      fill: map-get($color, three);
+    }
+  }
+
+  &-list {
+    flex-basis: 70%;
+    flex-grow: 1;
+    max-width: 70%;
+    display: flex;
+    align-items: center;
+
+    #header-list-product {
+
+      &:hover {
+        .header-list-products {
+          opacity: 1;
+          height: 150px;
+        }
+      }
+    }
+
+    &-products {
+      height: 0px;
+      opacity: 0;
+      padding-left: 0px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(0px);
+      transition: ease-in-out .3s;
+      margin-top: 15px;
+      padding: 10px 20px;
+      width: 120px;
+      background-color: map-get($color, bgcolor);
+      border-radius: 5px;
+      box-shadow: 1px 1px 6px 2px map-get($color, second);
+
+      &::before {
+        content: '';
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent map-get($color, bgcolor) transparent;
+      }
+
+      &>li {
+        margin: 15px 0px;
+
+
+        &>a {
+          color: map-get($color, three);
+          transition: ease-in-out .5s;
+          display: block;
+
+          &:hover {
+            color: map-get($color, main);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    &>ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      padding-left: 0px;
+      width: 80%;
+
+      &>li {
+        margin: 0px 10px;
+        position: relative;
+        cursor: pointer;
+
+        &>a {
+          color: map-get($color, three);
+          transition: ease-in-out .5s;
+
+          &:hover {
+            color: map-get($color, main);
+            text-decoration: none;
+          }
+        }
+
+      }
+    }
+  }
+
+  &-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 15%;
+    flex-grow: 1;
+    max-width: 15%;
+    color: map-get($color, three);
+  }
+}
+
+.header.active {
+  background-color: #222 !important;
+}
