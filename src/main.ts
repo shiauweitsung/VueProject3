@@ -8,6 +8,8 @@ import '@/assets/all.scss'
 import ScrollMagic from 'scrollmagic'
 import { TweenMax, TimelineMax } from 'gsap'
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap'
+require('scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators')
+
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false

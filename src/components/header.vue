@@ -54,14 +54,14 @@
           <li id="header-list-product">
             <router-link to="/product">產品</router-link>
             <ul class="header-list-products">
-              <li><a href="">鍵盤</a></li>
-              <li><a href="">滑鼠</a></li>
-              <li><a href="">電競筆電</a></li>
-              <li><a href="">手機</a></li>
+              <li><a href="" style="--i: 1">鍵盤</a></li>
+              <li><a href="" style="--i: 2">滑鼠</a></li>
+              <li><a href="" style="--i: 3">電競筆電</a></li>
+              <li><a href="" style="--i: 4">手機</a></li>
             </ul>
           </li>
           <li><router-link to="/circle">電競賽事</router-link></li>
-          <li><router-link to="/"></router-link></li>
+          <li><router-link to="/">聯絡客服</router-link></li>
         </ul>
       </div>
       <div class="header-account">登入</div>
