@@ -50,21 +50,26 @@
       </div>
       <div class="header-list">
         <ul>
-          <li><router-link to="/about">最新消息</router-link></li>
+          <li><router-link to="/about">News</router-link></li>
           <li id="header-list-product">
-            <router-link to="/product">產品</router-link>
+            <router-link to="/product">Products</router-link>
             <ul class="header-list-products">
-              <li><a href="" style="--i: 1">鍵盤</a></li>
-              <li><a href="" style="--i: 2">滑鼠</a></li>
-              <li><a href="" style="--i: 3">電競筆電</a></li>
-              <li><a href="" style="--i: 4">手機</a></li>
+              <li><a href="" style="--i: 1">Keyboards</a></li>
+              <li><a href="" style="--i: 2">Mice</a></li>
+              <li><a href="" style="--i: 3">Laptop</a></li>
+              <li><a href="" style="--i: 4">Mobile</a></li>
             </ul>
           </li>
-          <li><router-link to="/circle">電競賽事</router-link></li>
-          <li><router-link to="/">聯絡客服</router-link></li>
+          <li><router-link to="/circle">Product Support</router-link></li>
+          <li><router-link to="/circle">Contact Us</router-link></li>
         </ul>
       </div>
-      <div class="header-account">登入</div>
+      <div class="header-account">
+        <ul>
+          <li><a href="" class="color-link-main">登入</a></li>
+          <li><a href="" class="color-link-main">購物車</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

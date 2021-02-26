@@ -5,8 +5,18 @@ $color:(main:#34e89e,
 
 .color-main {
   color: map-get($color, main);
+  transition: ease-in-out .3s;
 
   &:hover {
     color: map-get($color, second);
+  }
+}
+
+.color-link-main {
+  color: map-get($color, three);
+  transition: ease-in-out .3s;
+
+  &:hover {
+    color: map-get($color, main);
   }
 }

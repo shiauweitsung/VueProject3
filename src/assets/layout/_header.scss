@@ -145,6 +145,26 @@
     flex-grow: 1;
     max-width: 15%;
     color: map-get($color, three);
+
+    &>ul {
+      display: flex;
+      margin-bottom: 0px;
+      padding-left: 0px;
+      border: 1px solid rgb(49, 41, 41);
+      background-color: rgb(49, 41, 41);
+      border-radius: 30px;
+      padding: 5px;
+
+      &>li {
+        padding: 5px 10px;
+
+        &>a {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
   }
 }
 
