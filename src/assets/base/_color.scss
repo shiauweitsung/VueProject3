@@ -1,7 +1,9 @@
 $color:(main:#34e89e,
   second:#fdbb2d,
   three:#fff,
-  bgcolor:#443f3f, );
+  bgcolor:#443f3f,
+  bgMaincolor:black,
+);
 
 .color-main {
   color: map-get($color, main);

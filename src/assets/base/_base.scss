@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
 
 // css reset start
 html,
@@ -98,10 +99,12 @@ section {
 
 body {
   line-height: 1;
-  background-color: black;
+  background-color: map-get($color, bgMaincolor);
+  color: map-get($color, three);
   position: relative;
   overflow-x: hidden;
-  font-family: 'ZCOOL XiaoWei', serif;
+  // font-family: 'ZCOOL XiaoWei', serif;
+  font-family: 'Noto Serif TC', serif;
 }
 
 h1,
@@ -111,6 +114,16 @@ h4,
 h5,
 h6 {
   margin: 0px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 ol,
@@ -174,6 +187,7 @@ textarea {
 .wrap {
   width: 100%;
   margin-top: 84px;
+  margin-bottom: 80px;
 }
 
 .content {

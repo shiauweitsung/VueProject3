@@ -8,17 +8,23 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: '/circle',
-    name: 'circle',
-    component: () => import('../components/circle.vue')
+    component: Home,
+    children: [
+      {
+        path: '',
+        component: () => import('../pages/index.vue')
+      },
+      {
+        path: 'about',
+        name: 'About',
+        component: () => import('../views/About.vue')
+      },
+      {
+        path: 'circle',
+        name: 'circle',
+        component: () => import('../components/circle.vue')
+      }
+    ]
   }
 ]
 
