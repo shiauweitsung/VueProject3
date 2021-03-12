@@ -1,16 +1,13 @@
 <template>
   <div class="circle">
-    <div class="box">
+    <div class="circle-box">
       <div class="percent">
         <svg>
           <circle cx="70" cy="70" r="70"></circle>
           <circle class="circleBar" cx="70" cy="70" r="70"></circle>
         </svg>
         <div class="number">
-          <h2>
-            <span class="percentNumber">{{ progress.percent }}</span
-            ><span>%</span>
-          </h2>
+          <h2><span class="percentNumber"></span><span>%</span></h2>
         </div>
       </div>
     </div>
@@ -18,32 +15,38 @@
 </template>
 
 <script>
-import { TimelineMax } from 'gsap'
+// import { TimelineMax } from 'gsap'
 export default {
   name: 'circles',
-  props: ['progress'],
+  // props: ['progress'],
   mounted () {
-    const circle = $('.circleBar')
-    let percentData = {
-      num: 0
-    }
-    const t1 = new TimelineMax()
-    t1.to(percentData, 1, {
-      num: 90,
-      onUpdate: function () {
-        circle.css('stroke-dashoffset', `calc(440 - (440 * ${percentData.num}) / 100)`)
-      }
-    })
-    t1.to(percentData, 3, {
-      num: 90,
-      onUpdate: function () {
-        $('.percentNumber').html(percentData.num.toFixed(0))
-      }
-    }, '-=1')
+    // const circle = $('.circleBar')
+    // let percentData = {
+    //   num: 0
+    // }
+    // const t1 = new TimelineMax()
+    // t1.to(percentData, 1, {
+    //   num: 90,
+    //   onUpdate: function () {
+    //     circle.css('stroke-dashoffset', `calc(440 - (440 * ${percentData.num}) / 100)`)
+    //   }
+    // })
+    // t1.to(percentData, 3, {
+    //   num: 90,
+    //   onUpdate: function () {
+    //     $('.percentNumber').html(percentData.num.toFixed(0))
+    //   }
+    // }, '-=1')
   }
 }
 </script>
 <style lang="scss" scoped>
+.circle {
+  display: inline-block;
+}
+.circle-box {
+  position: relative;
+}
 svg {
   position: relative;
   width: 150px;
@@ -68,5 +71,11 @@ svg {
     transition: stroke-dashoffset 1.5s linear;
     stroke-dashoffset: calc(440 - (440 * 0) / 100);
   }
+}
+.number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

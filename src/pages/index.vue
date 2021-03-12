@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="content">
         <swiper :swiperOption="swiperOption" />
-        <div class="index-content-laptop">
+        <div class="index-content-laptop mt">
           <div class="index-content-laptop-item laptop-item1">
             <router-link to="/">
               <div class="index-content-laptop-item-img">
@@ -56,7 +56,7 @@
             </router-link>
           </div>
         </div>
-        <div class="index-content-mouse">
+        <div class="index-content-mouse mt">
           <div class="index-content-mouse-item mouse-item1">
             <div class="index-content-mouse-item-img">
               <img src="@/assets/images/index/images/mouse1.png" alt="" />
@@ -110,8 +110,8 @@
             </div>
           </div>
         </div>
-        <div class="index-content-keyboard">
-          <div class="index-content-keyboard-item">
+        <div class="index-content-keyboard mt">
+          <div class="index-content-keyboard-item keyboard-item1">
             <div class="index-content-keyboard-item-img">
               <img src="@/assets/images/index/images/keyboard1.png" alt="" />
             </div>
@@ -119,7 +119,7 @@
               <h4>Razer Pro Type - US</h4>
             </div>
           </div>
-          <div class="index-content-keyboard-item">
+          <div class="index-content-keyboard-item keyboard-item2">
             <div class="index-content-keyboard-item-img">
               <img src="@/assets/images/index/images/keyboard1.png" alt="" />
             </div>
@@ -127,7 +127,7 @@
               <h4>Razer Pro Type - US</h4>
             </div>
           </div>
-          <div class="index-content-keyboard-item">
+          <div class="index-content-keyboard-item keyboard-item3">
             <div class="index-content-keyboard-item-img">
               <img src="@/assets/images/index/images/keyboard1.png" alt="" />
             </div>
@@ -136,8 +136,8 @@
             </div>
           </div>
         </div>
-        <div class="index-content-audio">
-          <div class="index-content-audio-item">
+        <div class="index-content-audio mt">
+          <div class="index-content-audio-item audio-item1">
             <div class="index-content-audio-item-img">
               <img src="@/assets/images/index/images/audio.png" alt="" />
             </div>
@@ -145,7 +145,7 @@
               <h4>Razer Kraken Kitty - Black</h4>
             </div>
           </div>
-          <div class="index-content-audio-item">
+          <div class="index-content-audio-item audio-item2">
             <div class="index-content-audio-item-img">
               <img src="@/assets/images/index/images/audio.png" alt="" />
             </div>
@@ -153,7 +153,7 @@
               <h4>Razer Kraken Kitty - Black</h4>
             </div>
           </div>
-          <div class="index-content-audio-item">
+          <div class="index-content-audio-item audio-item3">
             <div class="index-content-audio-item-img">
               <img src="@/assets/images/index/images/audio.png" alt="" />
             </div>
@@ -162,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="index-content-progressbar">
+        <div class="index-content-progressbar mt">
           <div class="index-content-progressbar-circle">
             <h4>市佔率</h4>
             <circles :progress="circleOptions" />
@@ -172,14 +172,13 @@
               <p>使用壽命</p>
               <div class="progress progressbar-item1">
                 <div
-                  class="progress-bar"
+                  class="progress-bar progress-bar-striped progress-bar-animated"
                   role="progressbar"
-                  style="width: 25%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  25%
+                  0
                 </div>
               </div>
             </div>
@@ -187,7 +186,7 @@
               <p>耐用度</p>
               <div class="progress progressbar-item2">
                 <div
-                  class="progress-bar"
+                  class="progress-bar progress-bar-striped progress-bar-animated"
                   role="progressbar"
                   style="width: 25%"
                   aria-valuenow="25"
@@ -202,7 +201,7 @@
               <p>上手度</p>
               <div class="progress progressbar-item3">
                 <div
-                  class="progress-bar"
+                  class="progress-bar progress-bar-striped progress-bar-animated"
                   role="progressbar"
                   style="width: 25%"
                   aria-valuenow="25"
@@ -220,7 +219,7 @@
   </div>
 </template>
 <script>
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
 import ScrollMagic from 'scrollmagic'
 import swiper from '@/components/SwiperCarousel'
 import circles from '@/components/progressCircle'
@@ -295,103 +294,87 @@ export default {
       },
       circleOptions: {
         percent: 90
+      },
+      num: {
+        num: 90
       }
     }
   },
   mounted () {
     const controller = new ScrollMagic.Controller()
-    const t1 = new TimelineMax()
-      .fromTo('.laptop-item1', 4, { autoAlpha: 0, y: '200', scale: 2 }, { autoAlpha: 1, y: '0', scale: 1 })
-      .fromTo('.laptop-item2', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
-      .fromTo('.laptop-item3', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
-      .addIndicators()
-      .addTo(controller)
+    TweenMax.fromTo('.laptop-item1', 3, { autoAlpha: 0, x: '300' }, { autoAlpha: 1, x: '0', yoyo: true, ease: 'Bounce.easeOut' })
+    TweenMax.fromTo('.laptop-item2', 3, { autoAlpha: 0, y: '-300' }, { autoAlpha: 1, y: '0', yoyo: true, ease: 'Bounce.easeOut' })
+    TweenMax.fromTo('.laptop-item3', 3, { autoAlpha: 0, x: '-300' }, { autoAlpha: 1, x: '0', yoyo: true, ease: 'Bounce.easeOut' })
+    // .addIndicators()
+    // .addTo(controller)
     const t2 = new TimelineMax()
-      .fromTo('.mouse-item1', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
-      .fromTo('.mouse-item2', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
-      .fromTo('.mouse-item3', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
-      .fromTo('.mouse-item4', 4, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
+      .staggerFromTo('.index-content-mouse-item', 0.3, { autoAlpha: 0 }, { autoAlpha: 1 }, 0.3)
+      .staggerFromTo('.index-content-mouse-item-txt', 1, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' }, 0.5)
     new ScrollMagic.Scene({
       triggerElement: '.index-content-mouse',
       triggerHook: 0.4,
-      duration: '200',
-      offset: '-100'
+      reverse: false
     })
       .addIndicators()
       .setTween(t2)
       .addTo(controller)
-    // const t2 = new TimelineMax()
-    //   .to('.img4 img', 4, {
-    //     autoAlpha: 1
-    //   })
-    //   .to('.img5 img', 4, {
-    //     autoAlpha: 1
-    //   })
-    //   .to('.img6 img', 4, {
-    //     autoAlpha: 1
-    //   })
-    // new ScrollMagic.Scene({
-    //   triggerElement: '.testcontent2',
-    //   triggerHook: 0,
-    //   duration: '300'
-    // })
-    //   .setTween(t2)
-    //   .addIndicators()
-    //   .addTo(controller)
-    // const t3 = new TimelineMax()
-    //   .to('.img7 img', 4, {
-    //     top: '0%',
-    //     autoAlpha: 1
-    //   })
-    //   .to('.img8 img', 4, {
-    //     top: '0%',
-    //     autoAlpha: 1
-    //   }, '-=2')
-    // new ScrollMagic.Scene({
-    //   triggerElement: '.testcontent3',
-    //   triggerHook: 0.7,
-    //   duration: '200',
-    //   offset: '100'
-    // })
-    //   .setTween(t3)
-    //   .addIndicators()
-    //   .addTo(controller)
-    // $('.test4txt').each(function () {
-    //   const t4 = new TimelineMax()
-    //     .to(this, 4, {
-    //       autoAlpha: 1,
-    //       y: '0%'
-    //     })
-    //   new ScrollMagic.Scene({
-    //     triggerElement: '.testcontent4',
-    //     triggerHook: 0.7,
-    //     duration: '100'
-    //   })
-    //     // .setClassToggle('.test4txt', 'testcontent4-fadein')
-    //     .setTween(t4)
-    //     .addIndicators()
-    //     .addTo(controller)
-    // })
-    // const t5 = new TimelineMax()
-    //   .to('.img9', 0.5, {
-    //     autoAlpha: 1,
-    //     y: '0'
-    //   })
-    //   .to('.img10', 0.5, {
-    //     autoAlpha: 1,
-    //     y: 50
-    //   })
-    //   .to('.img11', 0.5, {
-    //     autoAlpha: 1,
-    //     y: 100
-    //   })
-    // new ScrollMagic.Scene({
-    //   triggerElement: '.testcontent5',
-    //   triggerHook: 0.8
-    // })
-    //   .setTween(t5)
-    //   .addIndicators()
-    //   .addTo(controller)
+    const t3 = new TimelineMax()
+      .staggerFromTo('.index-content-keyboard-item', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' }, 0.5)
+    new ScrollMagic.Scene({
+      triggerElement: '.index-content-keyboard',
+      triggerHook: 0.4,
+      reverse: false
+    })
+      .addIndicators()
+      .setTween(t3)
+      .addTo(controller)
+    const t4 = new TimelineMax()
+      .fromTo('.audio-item3', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
+      .fromTo('.audio-item2', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
+      .fromTo('.audio-item1', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
+    new ScrollMagic.Scene({
+      triggerElement: '.index-content-audio',
+      triggerHook: 0.4,
+      reverse: false
+    })
+      .addIndicators()
+      .setTween(t4)
+      .addTo(controller)
+    let circle = $('.circleBar')
+    let percentData = {
+      num: 0
+    }
+    const t5 = new TimelineMax()
+      .fromTo('.index-content-progressbar-circle', 0.5, { autoAlpha: 0, y: '-200' }, { autoAlpha: 1, y: '0' })
+      .fromTo('.index-content-progressbar-right', 0.5, { autoAlpha: 0, x: '200', ease: 'Power0.easeInOut' },
+        {
+          autoAlpha: 1,
+          x: '0',
+          onComplete: function () {
+            $('.progressbar-item1 .progress-bar').animate({
+              width: '75%'
+            }, 3000)
+          }
+        })
+      .to(percentData, 1, {
+        num: this.circleOptions.percent,
+        onUpdate: function () {
+          circle.css('stroke-dashoffset', `calc(440 - (440 * ${percentData.num}) / 100)`)
+        }
+      })
+      .to(percentData, 3, {
+        num: this.circleOptions.percent,
+        onUpdate: function () {
+          $('.percentNumber').html(percentData.num.toFixed(0))
+        }
+      }, '-=1')
+    new ScrollMagic.Scene({
+      triggerElement: '.index-content-progressbar',
+      triggerHook: 0.7
+    })
+      .addIndicators()
+      .setTween(t5)
+      .addTo(controller)
   }
 }
 </script>

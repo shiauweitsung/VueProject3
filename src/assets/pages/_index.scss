@@ -1,6 +1,5 @@
 .index-content {
   &-laptop {
-    margin-top: 30px;
     display: flex;
 
     &-item {
@@ -42,7 +41,6 @@
   }
 
   &-mouse {
-    margin-top: 30px;
     display: flex;
     justify-content: space-around;
 
@@ -79,7 +77,6 @@
   }
 
   &-keyboard {
-    margin-top: 30px;
     display: flex;
     justify-content: space-around;
 
@@ -102,7 +99,6 @@
   }
 
   &-audio {
-    margin-top: 30px;
     display: flex;
     justify-content: space-around;
 
@@ -134,11 +130,16 @@
 
   &-progressbar {
     display: flex;
-    margin-top: 30px;
 
     &-circle {
       max-width: 30%;
       flex-basis: 30%;
+      margin: auto;
+      text-align: center;
+
+      &>h4 {
+        margin-bottom: 15px;
+      }
     }
 
     &-right {
@@ -174,6 +175,4 @@
       }
     }
   }
-
-
 }
