@@ -25,9 +25,18 @@ const routes: Array<RouteConfig> = [
         component: () => import('../components/circle.vue')
       }
     ]
+  },
+  {
+    path: '/admin',
+    name: 'backHome',
+    component: () => import('../backEnd/backHome.vue'),
+    children: [{
+      path: '/',
+      name: '',
+      component: () => import('../backEnd/backProducts.vue')
+    }]
   }
 ]
-
 const router = new VueRouter({
   routes
 })

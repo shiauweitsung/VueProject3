@@ -1,0 +1,63 @@
+.backHome {
+  display: flex;
+}
+
+.back {
+  &-sildemenu {
+    max-width: 250px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-logo {
+      margin-top: 30px;
+    }
+
+    &-list {
+      margin-top: 45px;
+
+      &>ul {
+        padding-left: 0px;
+
+        &>a {
+          color: map-get($color, three);
+
+          &>li {
+            margin-top: 15px;
+            border-radius: 20px;
+            border: 1px solid map-get($color, three);
+            display: block;
+            text-align: center;
+            width: 150px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+
+    .login-out {
+      position: absolute;
+      bottom: 30px;
+      border-radius: 20px;
+      border: 1px solid map-get($color, three);
+      display: block;
+      text-align: center;
+      width: 150px;
+      padding: 10px;
+
+      &>a {
+        color: map-get($color, three);
+      }
+    }
+  }
+
+  &-content {
+    margin-left: 300px;
+    width: 100%;
+    height: 100%;
+  }
+}

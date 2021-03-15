@@ -178,7 +178,7 @@
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  0
+                  80%
                 </div>
               </div>
             </div>
@@ -188,12 +188,11 @@
                 <div
                   class="progress-bar progress-bar-striped progress-bar-animated"
                   role="progressbar"
-                  style="width: 25%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  25%
+                  90%
                 </div>
               </div>
             </div>
@@ -203,12 +202,11 @@
                 <div
                   class="progress-bar progress-bar-striped progress-bar-animated"
                   role="progressbar"
-                  style="width: 25%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  25%
+                  97%
                 </div>
               </div>
             </div>
@@ -302,9 +300,9 @@ export default {
   },
   mounted () {
     const controller = new ScrollMagic.Controller()
-    TweenMax.fromTo('.laptop-item1', 3, { autoAlpha: 0, x: '300' }, { autoAlpha: 1, x: '0', yoyo: true, ease: 'Bounce.easeOut' })
-    TweenMax.fromTo('.laptop-item2', 3, { autoAlpha: 0, y: '-300' }, { autoAlpha: 1, y: '0', yoyo: true, ease: 'Bounce.easeOut' })
-    TweenMax.fromTo('.laptop-item3', 3, { autoAlpha: 0, x: '-300' }, { autoAlpha: 1, x: '0', yoyo: true, ease: 'Bounce.easeOut' })
+    TweenMax.fromTo('.laptop-item1', 3, { autoAlpha: 0, x: '300' }, { autoAlpha: 1, x: '0', ease: 'Expo.easeInOut' })
+    TweenMax.fromTo('.laptop-item2', 3, { autoAlpha: 0, y: '-300' }, { autoAlpha: 1, y: '0', ease: 'Expo.easeInOut' })
+    TweenMax.fromTo('.laptop-item3', 3, { autoAlpha: 0, x: '-300' }, { autoAlpha: 1, x: '0', ease: 'Expo.easeInOut' })
     // .addIndicators()
     // .addTo(controller)
     const t2 = new TimelineMax()
@@ -349,19 +347,28 @@ export default {
       .fromTo('.index-content-progressbar-right', 0.5, { autoAlpha: 0, x: '200', ease: 'Power0.easeInOut' },
         {
           autoAlpha: 1,
-          x: '0',
-          onComplete: function () {
-            $('.progressbar-item1 .progress-bar').animate({
-              width: '75%'
-            }, 3000)
-          }
+          x: '0'
+          // onComplete: function () {
+          //   $('.progressbar-item1 .progress-bar').animate({
+          //     width: '80%'
+          //   }, 3000, 'linear')
+          //   $('.progressbar-item2 .progress-bar').animate({
+          //     width: '90%'
+          //   }, 3000, 'linear')
+          //   $('.progressbar-item3 .progress-bar').animate({
+          //     width: '97%'
+          //   }, 3000, 'linear')
+          // }
         })
+      .to('.progressbar-item1 .progress-bar', 2, { width: '80%', ease: 'Power4.easeInOut' })
+      .to('.progressbar-item2 .progress-bar', 2, { width: '90%', ease: 'Power4.easeInOut' }, '-=2')
+      .to('.progressbar-item3 .progress-bar', 2, { width: '97%', ease: 'Power4.easeInOut' }, '-=2')
       .to(percentData, 1, {
         num: this.circleOptions.percent,
         onUpdate: function () {
           circle.css('stroke-dashoffset', `calc(440 - (440 * ${percentData.num}) / 100)`)
         }
-      })
+      }, '-=1')
       .to(percentData, 3, {
         num: this.circleOptions.percent,
         onUpdate: function () {
@@ -370,7 +377,7 @@ export default {
       }, '-=1')
     new ScrollMagic.Scene({
       triggerElement: '.index-content-progressbar',
-      triggerHook: 0.7
+      triggerHook: 0.8
     })
       .addIndicators()
       .setTween(t5)
