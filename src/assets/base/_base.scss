@@ -150,6 +150,7 @@ table {
 }
 
 button {
+  cursor: pointer;
   outline: none;
 }
 
@@ -205,5 +206,49 @@ textarea {
 
   @media(max-width: 576px) {
     margin-top: 15px;
+  }
+}
+
+// validate class
+.error-txt {
+  color: rgb(255, 78, 78);
+}
+
+// back content layout
+.back {
+  &-wrap {
+    margin-top: 35px;
+  }
+
+  &-content {
+    margin-left: 300px;
+    width: 100%;
+    height: 100%;
+
+    @media(max-width: 992px) {
+      margin-left: 200px;
+    }
+
+    @media(max-width:768px) {
+      margin: auto;
+      margin-top: 130px;
+    }
+  }
+
+  &-title {
+    margin-bottom: 30px;
+  }
+}
+
+// modal
+.modal-content {
+  background-color: map-get($color, bgcolor);
+  box-shadow: 1px 1px 50px 20px map-get($color, bgcolor);
+}
+
+// close btn
+.close {
+  &>span {
+    color: map-get($color, three);
   }
 }

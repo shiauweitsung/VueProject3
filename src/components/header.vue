@@ -68,7 +68,9 @@
       </div>
       <div class="header-account">
         <ul>
-          <li><a href="" class="color-link-main">登入</a></li>
+          <li>
+            <router-link to="/login" class="color-link-main">登入</router-link>
+          </li>
           <li><a href="" class="color-link-main">購物車</a></li>
         </ul>
       </div>

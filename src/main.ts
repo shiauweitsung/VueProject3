@@ -8,6 +8,8 @@ import 'bootstrap'
 import '@/assets/all.scss'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import validation from './plugin/validate.js'
+import store from './store'
 import ScrollMagic from 'scrollmagic'
 import { TweenMax, TimelineMax } from 'gsap'
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap'
@@ -19,6 +21,8 @@ Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
 new Vue({
+  validation,
+  store,
   router,
   render: h => h(App)
 }).$mount('#app')

@@ -53,9 +53,7 @@
           <router-link to="/admin"><li>訂單紀錄</li></router-link>
         </ul>
       </div>
-      <div class="login-out">
-        <router-link to="/">登出</router-link>
-      </div>
+      <div class="login-out" @click="logout">登出</div>
     </div>
     <div class="back-content">
       <router-view></router-view>
@@ -64,6 +62,23 @@
 </template>
 <script>
 export default {
-  name: 'backHome'
+  name: 'backHome',
+  methods: {
+    logout () {
+      const url = `${process.env.VUE_APP_API}/logout`
+      this.$http.post(url).then(res => {
+        if (res.data.success) {
+          console.log(res, 'logout')
+          this.$router.push('/')
+        } else {
+          alert('登出失敗')
+        }
+      })
+    }
+  },
+  created () {
+    const cookietoken = document.cookie.replace(/(?:(?:^|.*;\s*)shiaurazer\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    this.$http.defaults.headers.common.Authorization = cookietoken
+  }
 }
 </script>

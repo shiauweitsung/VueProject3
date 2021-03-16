@@ -1,0 +1,41 @@
+// backProducts
+.back-products {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media(max-width:768px) {
+    justify-content: center;
+  }
+
+  &-item {
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 10px 15px;
+
+    @media(max-width:1200px) {
+      flex-basis: 48%;
+      max-width: 48%;
+    }
+
+    @media(max-width:576px) {
+      flex-basis: 80%;
+      max-width: 80%;
+    }
+
+    &-img {
+      text-align: center;
+    }
+
+    &-info {
+      padding: 10px 15px;
+
+      &-name {
+        text-align: center;
+      }
+
+      &>p {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
