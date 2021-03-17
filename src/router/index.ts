@@ -25,6 +25,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('../pages/login.vue')
       },
       {
+        path: 'products',
+        name: 'products',
+        component: () => import('../pages/products.vue')
+      },
+      {
         path: 'circle',
         name: 'circle',
         component: () => import('../components/circle.vue')

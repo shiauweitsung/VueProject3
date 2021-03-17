@@ -54,7 +54,7 @@
         <ul>
           <li><router-link to="/about">News</router-link></li>
           <li id="header-list-product">
-            <router-link to="/product">Products</router-link>
+            <router-link to="/products">Products</router-link>
             <ul class="header-list-products">
               <li><a href="" style="--i: 1">Keyboards</a></li>
               <li><a href="" style="--i: 2">Mice</a></li>

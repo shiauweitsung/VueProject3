@@ -13,8 +13,25 @@ export default {
         context.commit('PRODUCTS', res.data.products)
       })
     },
-    openModal (context, { modalNew, item }) {
-      context.commit('MODALPRODUCT', { modalNew, item })
+    openModal (context, item) {
+      context.commit('MODALPRODUCT', item)
+    },
+    updateProduct (context, item) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
+      axios.put(url, { data: item }).then(res => {
+        if (res.data.success) {
+          context.dispatch('getProducts')
+          $('#modalproducts').modal('hide')
+        }
+      })
+    },
+    delProduct (context, item) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
+      axios.delete(url).then(res => {
+        if (res.data.success) {
+          context.dispatch('getProducts')
+        }
+      })
     }
   },
   mutations: {
@@ -22,14 +39,7 @@ export default {
       state.backProducts = payload
     },
     MODALPRODUCT (state, payload) {
-      console.log(payload, 'muc')
-      if (!payload.modalNew) {
-        state.modalProduct = payload.item
-        state.modalNew = true
-      } else {
-        state.modalProduct = payload.item
-        state.modalNew = false
-      }
+      state.modalProduct = payload.item
       $('#modalproducts').modal('show')
     }
   },

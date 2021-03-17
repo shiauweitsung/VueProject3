@@ -11,6 +11,8 @@
     flex-basis: 30%;
     max-width: 30%;
     padding: 10px 15px;
+    position: relative;
+
 
     @media(max-width:1200px) {
       flex-basis: 48%;
@@ -21,6 +23,7 @@
       flex-basis: 80%;
       max-width: 80%;
     }
+
 
     &-img {
       text-align: center;
@@ -37,5 +40,78 @@
         margin-bottom: 10px;
       }
     }
+
+    &-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      border: transparent;
+      background-color: transparent;
+
+      &-edit {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        top: 60px;
+        right: 60px;
+        border-radius: 5px;
+        background-color: map-get($color, bgcolor);
+        padding: 10px;
+        transition: all .5s;
+
+        &>button:nth-child(1) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.modal-products {
+  &-img {
+    display: flex;
+    justify-content: space-between;
+
+    &>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &>img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  &-title {
+    margin-bottom: 10px;
+  }
+
+  &-txt {
+    display: flex;
+    margin-bottom: 10px;
+
+    &>div {
+      max-width: 20%;
+      margin-right: 1%;
+
+      &>input {
+        max-width: 100%;
+      }
+    }
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  &-desc {
+    margin-bottom: 10px;
+  }
+
+  &-cont {
+    margin-bottom: 10px;
   }
 }

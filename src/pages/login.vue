@@ -1,22 +1,52 @@
 <template>
   <div class="wrap">
     <div class="content">
-      <h2>登入</h2>
-      <ValidationObserver ref="form">
-        <form @submit.prevent="onSubmit">
-          <ValidationProvider rules="email|required" v-slot="{ errors }">
-            <label for="account">帳號 : </label>
-            <input type="email" name="email" v-model="user.username" />
-            <span class="error-txt">{{ errors[0] }}</span>
-          </ValidationProvider>
-          <ValidationProvider rules="required" v-slot="{ errors }">
-            <label for="password">密碼 : </label>
-            <input type="password" name="password" v-model="user.password" />
-            <span class="error-txt">{{ errors[0] }}</span>
-          </ValidationProvider>
-          <button type="submit">登入</button>
-        </form>
-      </ValidationObserver>
+      <div class="login">
+        <div class="login-left">
+          <div>
+            <p>方便管理的後台系統</p>
+            <p>簡易好看的操作畫面</p>
+          </div>
+        </div>
+        <div class="login-right">
+          <h4>登入帳號</h4>
+          <ValidationObserver ref="form">
+            <form @submit.prevent="onSubmit">
+              <ValidationProvider
+                class="login-input-item"
+                rules="email|required"
+                v-slot="{ errors }"
+              >
+                <label class="login-label" for="account">帳號 : </label>
+                <input
+                  class="login-input"
+                  type="email"
+                  name="email"
+                  v-model="user.username"
+                />
+                <span class="error-txt">{{ errors[0] }}</span>
+              </ValidationProvider>
+              <ValidationProvider
+                class="login-input-item"
+                rules="required"
+                v-slot="{ errors }"
+              >
+                <label class="login-label" for="password">密碼 : </label>
+                <input
+                  type="password"
+                  name="password"
+                  class="login-input"
+                  v-model="user.password"
+                />
+                <span class="error-txt">{{ errors[0] }}</span>
+              </ValidationProvider>
+              <div class="login-submit">
+                <button type="submit">登入</button>
+              </div>
+            </form>
+          </ValidationObserver>
+        </div>
+      </div>
     </div>
   </div>
 </template>

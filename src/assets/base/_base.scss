@@ -158,6 +158,16 @@ button:focus {
   outline: none;
 }
 
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
 // input type=number 箭頭消失
 input::-webkit-outer-spin-button,
@@ -246,9 +256,34 @@ textarea {
   box-shadow: 1px 1px 50px 20px map-get($color, bgcolor);
 }
 
-// close btn
+//btn
+.main-btn {
+  background-color: transparent;
+  border: 1px solid map-get($color, three);
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: map-get($color, three);
+  transition: all .5s;
+
+  &:hover {
+    border: 1px solid map-get($color, main);
+    color: map-get($color, main);
+  }
+}
+
 .close {
   &>span {
     color: map-get($color, three);
   }
+}
+
+// transition fade animation
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
