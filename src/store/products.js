@@ -19,23 +19,37 @@ export default {
       state.products = payload
     },
     CATEGORY (state, payload) {
-      let array = payload.map(res => {
-        return res.category
-      }).reduce((prev, cur) => {
-        if (cur in prev) {
-          prev[cur]++
-        } else {
-          prev[cur] = 1
-        }
-        return prev
-      }, {})
-      for (let i in array) {
-        state.category.push({
-          title: i,
-          num: array[i]
-        })
-      }
+      // let array = payload.map(res => {
+      //   return res.category
+      // }).reduce((prev, cur) => {
+      //   if (cur in prev) {
+      //     prev[cur]++
+      //   } else {
+      //     prev[cur] = 1
+      //   }
+      //   return prev
+      // }, {})
+      // for (let i in array) {
+      //   state.category.push({
+      //     title: i,
+      //     num: array[i]
+      //   })
+      // }
       console.log(state.category)
+      payload.reduce((obj, item) => {
+        if (item.category in obj) {
+          obj[item.category]++
+          state.category.forEach(res => {
+            if (res.title === item.category) {
+              res.num++
+            }
+          })
+        } else {
+          obj[item.category] = 1
+          state.category.push({ title: item.category, num: 1 })
+        }
+        return obj
+      }, {})
     }
   },
   getters: {
