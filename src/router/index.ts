@@ -42,7 +42,6 @@ const routes: Array<RouteConfig> = [
     component: () => import('../backEnd/backHome.vue'),
     children: [{
       path: '/',
-      name: '',
       component: () => import('../backEnd/backProducts.vue'),
       meta: { requiresAuth: true }
     }]

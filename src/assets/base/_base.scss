@@ -100,6 +100,7 @@ section {
 body {
   line-height: 1;
   background-color: map-get($color, bgMaincolor);
+  font-size: 16px;
   color: map-get($color, three);
   position: relative;
   overflow-x: hidden;
@@ -271,6 +272,16 @@ textarea {
   }
 }
 
+.learn-more {
+  color: map-get($color, main);
+  font-size: 14px;
+
+  &:hover {
+    color: map-get($color, main);
+    text-decoration: underline;
+  }
+}
+
 .close {
   &>span {
     color: map-get($color, three);
@@ -278,6 +289,7 @@ textarea {
 }
 
 // transition fade animation
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .5s;
