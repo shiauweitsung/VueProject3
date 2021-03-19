@@ -3,14 +3,51 @@ export default {
   namespaced: true,
   state: {
     products: [],
-    category: []
+    category: [],
+    cart: [],
+    cartLength: '',
+    count: 1,
+    thisCount: 1
   },
   actions: {
     getProducts (context) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
+      context.commit('UPDATELOADING', true, { root: true })
       axios.get(url).then(res => {
-        context.commit('PRODUCTS', res.data.products)
-        context.commit('CATEGORY', res.data.products)
+        if (res.data.success) {
+          Object.keys(res.data.products).forEach(item => {
+            res.data.products[item].count = 1
+          })
+          context.commit('PRODUCTS', res.data.products)
+          context.commit('CATEGORY', res.data.products)
+          context.commit('UPDATELOADING', false, { root: true })
+        }
+      })
+    },
+    addCart (context, { id, qty }) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      let carts = {
+        product_id: id,
+        qty
+      }
+      context.commit('UPDATELOADING', true, { root: true })
+      axios.post(url, { data: carts }).then(res => {
+        if (res.data.success) {
+          context.dispatch('getCart')
+          context.commit('UPDATELOADING', false, { root: true })
+        } else {
+          alert('error')
+        }
+      })
+    },
+    getCart (context) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      context.commit('UPDATELOADING', true, { root: true })
+      axios.get(url).then(res => {
+        if (res.data.success) {
+          context.commit('UPDATELOADING', false, { root: true })
+          context.commit('CART', res.data.data)
+        }
       })
     }
   },
@@ -35,7 +72,9 @@ export default {
       //     num: array[i]
       //   })
       // }
-      console.log(state.category)
+      // console.log(state.category)
+      // 初始化分類， 以免SPA關係 導致切換頁 重複push陣列
+      state.category = []
       payload.reduce((obj, item) => {
         if (item.category in obj) {
           obj[item.category]++
@@ -50,10 +89,34 @@ export default {
         }
         return obj
       }, {})
+    },
+    CART (state, payload) {
+      state.cart = payload
+      state.cartLength = payload.carts.length
+    },
+    COUNTSET (state, value) {
+      state.count = value
+    },
+    COUNTADD (state, value) {
+      console.log(value)
+      if (state.count >= 999) {
+        return true
+      } else {
+        state.count++
+      }
+    },
+    COUNTDECREASE (state) {
+      if (state.count <= 1) {
+        return true
+      } else {
+        state.count--
+      }
     }
   },
   getters: {
     products: state => state.products,
-    category: state => state.category
+    category: state => state.category,
+    cart: state => state.cart,
+    cartlength: state => state.cartLength
   }
 }

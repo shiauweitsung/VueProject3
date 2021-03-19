@@ -10,6 +10,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import validation from './plugin/validate.js'
 import store from './store'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 import ScrollMagic from 'scrollmagic'
 import { TweenMax, TimelineMax } from 'gsap'
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap'
@@ -18,6 +20,7 @@ require('scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators')
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
 Vue.use(VueAxios, axios)
 Vue.use(VueAwesomeSwiper)
+Vue.component('Loading', Loading)
 Vue.config.productionTip = false
 
 new Vue({

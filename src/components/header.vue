@@ -71,21 +71,32 @@
           <li>
             <router-link to="/login" class="color-link-main">登入</router-link>
           </li>
-          <li><a href="" class="color-link-main">購物車</a></li>
+          <li class="header-account-cart">
+            <a href="" class="color-link-main">購物車</a>
+            <span>{{ cartlength }}</span>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'headers',
+  methods: {
+    ...mapActions('products', ['getCart'])
+  },
+  computed: {
+    ...mapGetters('products', ['cart', 'cartlength'])
+  },
   mounted () {
     $(window).scroll(function () {
       let thisScroll = $(window).scrollTop()
       const header = $('.header')
       thisScroll > 100 ? header.addClass('active') : header.removeClass('active')
     })
+    this.getCart()
   }
 }
 </script>

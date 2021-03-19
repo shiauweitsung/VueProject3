@@ -1,5 +1,18 @@
 <template>
   <div class="wrap">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-spin-vr67c069ls">
+        <div class="ldio-i4ihhev39wf">
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+        </div>
+      </div>
+    </loading>
     <div class="content">
       <div class="recommend">
         <h4>為您推薦</h4>
@@ -40,16 +53,34 @@
               v-for="(item, key) in products"
               :key="key"
             >
-              <div class="products-cont-item-img">
-                <img :src="item.image" alt="" />
+              <div>
+                <div class="products-cont-item-img">
+                  <img :src="item.image" alt="" />
+                </div>
+                <div class="products-cont-item-info">
+                  <p>{{ item.title }}</p>
+                  <p>{{ item.description }}</p>
+                  <p>{{ item.price }}</p>
+                  <p>{{ item.origin_price }}</p>
+                  <router-link to="" class="learn-more">查看細節</router-link>
+                </div>
               </div>
-              <div class="products-cont-item-info">
-                <p>{{ item.title }}</p>
-                <p>{{ item.description }}</p>
-                <p>{{ item.price }}</p>
-                <p>{{ item.origin_price }}</p>
-                <router-link to="" class="learn-more">查看細節</router-link>
-                <button class="main-btn">加入購物車</button>
+              <div>
+                <div class="products-cont-item-btn">
+                  <button @click="addCount(item)">+</button>
+                  <input
+                    type="number"
+                    v-model="count"
+                    @keypress="keypress"
+                    @input="checkCount"
+                    oninput="if(value.length>3)value=value.slice(0,3)"
+                    id="countNumb"
+                  />
+                  <button @click="decreaseCount">-</button>
+                </div>
+                <button class="main-btn" @click="addCart(item.id, (qty = 1))">
+                  加入購物車
+                </button>
               </div>
             </div>
           </div>
@@ -64,18 +95,50 @@ export default {
   name: 'products',
   data () {
     return {
-      show: false,
-      rotate: false
+      show: true,
+      rotate: true
     }
   },
   methods: {
-    ...mapActions('products', ['getProducts'])
+    ...mapActions('products', ['getProducts', 'getCart']),
+    addCart (id, qty) {
+      this.$store.dispatch('products/addCart', { id, qty })
+    },
+    keypress (e) {
+      if (e.key === '+' || e.key === 'e' || e.key === '-') {
+        e.preventDefault()
+      }
+    },
+    checkCount (e) {
+      let value = Number(e.target.value)
+      console.log(e)
+      if (value < 1 || value === '' || value === 0) {
+        e.target.value = 1
+        alert('最小數量為1 不可為0或是空白')
+      }
+    },
+    addCount (item) {
+      this.$store.commit('products/COUNTADD', item)
+    },
+    decreaseCount () {
+      this.$store.commit('products/COUNTDECREASE')
+    }
   },
   computed: {
-    ...mapGetters('products', ['products', 'category'])
+    ...mapGetters('products', ['products', 'category']),
+    ...mapGetters(['isLoading']),
+    count: {
+      get () {
+        return this.$store.state.products.count
+      },
+      set (value) {
+        this.$store.commit('products/COUNTSET', value)
+      }
+    }
   },
   created () {
     this.getProducts()
+    this.getCart()
   }
 }
 </script>

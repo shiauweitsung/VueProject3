@@ -24,7 +24,7 @@
           <p>US {{ item.price }}</p>
           <p>{{ item.content }}</p>
         </div>
-        <button class="back-products-item-btn" @click="editmenu(item)">
+        <button class="back-products-item-btn" @click="editshow(item)">
           <svg
             id="Layer_1"
             enable-background="new 0 0 512 512"
@@ -44,7 +44,7 @@
           </svg>
         </button>
         <transition name="fade">
-          <div class="back-products-item-btn-edit">
+          <div class="back-products-item-btn-edit" v-if="item.show">
             <button class="main-btn" @click="openModal(item)">修改</button>
             <button class="main-btn" @click="delProducts(item)">刪除</button>
           </div>
@@ -80,7 +80,7 @@
                   <p>上傳圖片網址 :</p>
                   <input type="file" ref="file" @change="updateFiled" />
                   <label for="imgUrl">網址 : </label>
-                  <input type="text" id="imgUrl" v-model="modalproduct.image" />
+                  <input type="text" id="imgUrl" :value="modalproduct.image" />
                 </div>
                 <img
                   :src="modalproduct.image"
@@ -93,7 +93,7 @@
                 <input
                   type="text"
                   id="product-title"
-                  v-model="modalproduct.title"
+                  :value="modalproduct.title"
                 />
               </div>
               <div class="modal-products-txt">
@@ -102,7 +102,7 @@
                   <input
                     type="text"
                     id="product-category"
-                    v-model="modalproduct.category"
+                    :value="modalproduct.category"
                   />
                 </div>
                 <div class="modal-products-txt-unit">
@@ -110,7 +110,7 @@
                   <input
                     type="text"
                     id="product-unit"
-                    v-model="modalproduct.unit"
+                    :value="modalproduct.unit"
                   />
                 </div>
                 <div class="modal-products-txt-price">
@@ -118,7 +118,7 @@
                   <input
                     type="text"
                     id="product-price"
-                    v-model="modalproduct.price"
+                    :value="modalproduct.price"
                   />
                 </div>
                 <div class="modal-products-txt-origin">
@@ -126,7 +126,7 @@
                   <input
                     type="text"
                     id="product-origin_price"
-                    v-model="modalproduct.origin_price"
+                    :value="modalproduct.origin_price"
                   />
                 </div>
               </div>
@@ -137,7 +137,7 @@
                   rows="10"
                   type="text"
                   id="product-description"
-                  v-model="modalproduct.description"
+                  v-model="message"
                 />
               </div>
               <div class="modal-products-cont">
@@ -147,7 +147,7 @@
                   rows="10"
                   type="text"
                   id="product-content"
-                  v-model="modalproduct.content"
+                  :value="modalproduct.content"
                 />
               </div>
             </form>
@@ -178,10 +178,11 @@ export default {
         type: 'backProducts/openModal',
         item: item
       })
+      console.log(this.$store.state.backProducts.modalProduct)
     },
-    editmenu (item) {
-      item.show = false
+    editshow (item) {
       console.log(item)
+      this.$store.commit('backProducts/EDITSHOW', item)
     },
     updateFiled () {
       const updatefile = this.$refs.file.files[0]
@@ -201,17 +202,31 @@ export default {
       })
     },
     updateProduct (item) {
+      console.log(item)
       this.$store.dispatch('backProducts/updateProduct', item)
     },
     delProducts (item) {
       this.$store.dispatch('backProducts/delProduct', item)
+    },
+    updateMoudleProduct (e) {
+      console.log(e)
+      this.$store.commit('backProducts/UPDATEMOUDLEPRODUCT', e.target.value)
     }
   },
   computed: {
-    ...mapGetters('backProducts', ['products', 'modalproduct'])
+    ...mapGetters('backProducts', ['products', 'modalproduct']),
+    message: {
+      get () {
+        return this.$store.state.backProducts.modalProduct.description
+      },
+      set (value) {
+        this.$store.commit('backProducts/UPDATEMOUDLEPRODUCT', value)
+      }
+    }
   },
   created () {
     this.getProducts()
+    console.log(this.$store.state.backProducts.modalProduct.description)
   }
 }
 </script>
