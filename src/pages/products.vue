@@ -70,13 +70,13 @@
                   <button @click="addCount(item)">+</button>
                   <input
                     type="number"
-                    v-model="count"
+                    v-model="item.count"
                     @keypress="keypress"
                     @input="checkCount"
                     oninput="if(value.length>3)value=value.slice(0,3)"
                     id="countNumb"
                   />
-                  <button @click="decreaseCount">-</button>
+                  <button @click="decreaseCount(item)">-</button>
                 </div>
                 <button class="main-btn" @click="addCart(item.id, (qty = 1))">
                   加入購物車
@@ -120,25 +120,32 @@ export default {
     addCount (item) {
       this.$store.commit('products/COUNTADD', item)
     },
-    decreaseCount () {
-      this.$store.commit('products/COUNTDECREASE')
+    decreaseCount (item) {
+      this.$store.commit('products/COUNTDECREASE', item)
+    },
+    checkCart () {
+      let id = '-MVsnOSnTKB-PgR5zwOW'
+      this.$store.state.products.cart.carts.some(res => {
+        if (res.product_id === id) {
+          console.log('重複')
+          return true
+        }
+      })
+      const find = this.$store.state.products.cart.carts.find(res => res.product_id === id)
+      console.log(find, 'find')
+      console.log(this.$store.state.products.cart)
     }
   },
   computed: {
     ...mapGetters('products', ['products', 'category']),
-    ...mapGetters(['isLoading']),
-    count: {
-      get () {
-        return this.$store.state.products.count
-      },
-      set (value) {
-        this.$store.commit('products/COUNTSET', value)
-      }
-    }
+    ...mapGetters(['isLoading'])
   },
   created () {
     this.getProducts()
-    this.getCart()
+    const vm = this
+    setTimeout(res => {
+      vm.checkCart()
+    }, 2000)
   }
 }
 </script>

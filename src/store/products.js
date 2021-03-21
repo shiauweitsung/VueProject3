@@ -31,6 +31,7 @@ export default {
         qty
       }
       context.commit('UPDATELOADING', true, { root: true })
+      // 在components判斷是否是新的值 如果新的執行axios 舊的 執行mutation
       axios.post(url, { data: carts }).then(res => {
         if (res.data.success) {
           context.dispatch('getCart')
@@ -44,6 +45,7 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       context.commit('UPDATELOADING', true, { root: true })
       axios.get(url).then(res => {
+        console.log(res.data, 'cart')
         if (res.data.success) {
           context.commit('UPDATELOADING', false, { root: true })
           context.commit('CART', res.data.data)
@@ -54,6 +56,12 @@ export default {
   mutations: {
     PRODUCTS (state, payload) {
       state.products = payload
+    },
+    CHECKCART (state, payload) {
+      const find = state.cart.carts.find(res => res.product_id === payload.product_id)
+      if (find) {
+        find.qty += payload.qty
+      }
     },
     CATEGORY (state, payload) {
       // let array = payload.map(res => {
@@ -99,17 +107,17 @@ export default {
     },
     COUNTADD (state, value) {
       console.log(value)
-      if (state.count >= 999) {
+      if (value.count >= 999) {
         return true
       } else {
-        state.count++
+        value.count++
       }
     },
-    COUNTDECREASE (state) {
-      if (state.count <= 1) {
+    COUNTDECREASE (state, value) {
+      if (value.count <= 1) {
         return true
       } else {
-        state.count--
+        value.count--
       }
     }
   },
