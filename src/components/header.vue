@@ -54,12 +54,36 @@
         <ul>
           <li><router-link to="/about">News</router-link></li>
           <li id="header-list-product">
-            <router-link to="/products">Products</router-link>
+            <router-link to="/products/all">Products</router-link>
             <ul class="header-list-products">
-              <li><a href="" style="--i: 1">Keyboards</a></li>
-              <li><a href="" style="--i: 2">Mice</a></li>
-              <li><a href="" style="--i: 3">Laptop</a></li>
-              <li><a href="" style="--i: 4">Mobile</a></li>
+              <li>
+                <router-link
+                  style="--i: 1"
+                  :to="{ name: 'products', params: { category: '滑鼠' } }"
+                  >Mice</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  style="--i: 2"
+                  :to="{ name: 'products', params: { category: '鍵盤' } }"
+                  >keyboard</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  style="--i: 3"
+                  :to="{ name: 'products', params: { category: '筆電' } }"
+                  >laptop</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  style="--i: 4"
+                  :to="{ name: 'products', params: { category: '耳機' } }"
+                  >audio</router-link
+                >
+              </li>
             </ul>
           </li>
           <li><router-link to="/circle">Product Support</router-link></li>
@@ -71,9 +95,38 @@
           <li>
             <router-link to="/login" class="color-link-main">登入</router-link>
           </li>
-          <li class="header-account-cart">
-            <a href="" class="color-link-main">購物車</a>
-            <span>{{ cartlength }}</span>
+          <li class="header-account-cart" @click="cartList">
+            <p class="color-link-main">購物車</p>
+            <span v-if="cartlength">{{ cartlength }}</span>
+            <div class="header-account-cart-list" v-if="cartShow">
+              <ul v-if="cartlength">
+                <li>
+                  <div class="header-account-cart-list-img">圖片</div>
+                  <div class="header-account-cart-list-txt">名稱/數量</div>
+                  <div class="header-account-cart-list-unit">數量</div>
+                  <div class="header-account-cart-list-btn"></div>
+                </li>
+                <li v-for="(item, key) in cart.carts" :key="key">
+                  <div class="header-account-cart-list-img">
+                    <img :src="item.product.image" alt="" />
+                  </div>
+                  <div class="header-account-cart-list-txt">
+                    <p>{{ item.product.title }}</p>
+                  </div>
+                  <div class="header-account-cart-list-unit">
+                    <span>{{ item.qty }}</span>
+                  </div>
+                  <div class="header-account-cart-list-btn">
+                    <button @click="delCart(item.id)">
+                      <img src="~@/assets/images/icon/trash.png" alt="" />
+                    </button>
+                  </div>
+                </li>
+              </ul>
+              <ul v-else>
+                <li>目前沒有任何購物車商品</li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -84,8 +137,19 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'headers',
+  data () {
+    return {
+      cartShow: false
+    }
+  },
   methods: {
-    ...mapActions('products', ['getCart'])
+    ...mapActions('products', ['getCart']),
+    delCart (id) {
+      this.$store.dispatch('products/delCart', id)
+    },
+    cartList () {
+      this.cartShow = !this.cartShow
+    }
   },
   computed: {
     ...mapGetters('products', ['cart', 'cartlength'])

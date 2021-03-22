@@ -169,6 +169,11 @@
     &-cart {
       position: relative;
 
+      &>p {
+        display: inline-block;
+        cursor: pointer;
+      }
+
       &>span {
         position: absolute;
         font-size: 12px;
@@ -178,6 +183,64 @@
         height: 14px;
         top: -8px;
         text-align: center;
+      }
+
+      &-list {
+        position: absolute;
+        right: 0px;
+        top: 39px;
+        background-color: map-get($color, bgcolor);
+        border-radius: 10px;
+        padding: 10px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 0px;
+          height: 0px;
+          top: -8px;
+          right: 13px;
+          border-style: solid;
+          border-width: 0px 8px 9px 8px;
+          border-color: transparent transparent map-get($color, bgcolor) transparent;
+        }
+
+        &>ul {
+          padding-left: 0px;
+
+          &>li {
+            display: flex;
+            text-align: center;
+            align-items: center;
+
+            &>div {
+              margin-bottom: 5px;
+
+              &>img {
+                width: 60px;
+                height: 60px;
+              }
+            }
+
+            &>button {}
+          }
+        }
+
+        &-img {
+          width: 80px;
+        }
+
+        &-txt {
+          width: 150px;
+        }
+
+        &-unit {
+          width: 30px;
+        }
+
+        &-btn {
+          width: 50px;
+        }
       }
     }
   }

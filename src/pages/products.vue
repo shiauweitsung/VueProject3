@@ -40,7 +40,11 @@
                 v-show="show"
                 class="products-category-item"
               >
-                {{ item.title }} <span>({{ item.num }})</span>
+                <router-link
+                  :to="{ name: 'products', params: { category: item.title } }"
+                >
+                  {{ item.title }} <span>({{ item.num }})</span>
+                </router-link>
               </li>
             </transition-group>
           </ul>
@@ -48,41 +52,46 @@
         <div class="products-cont">
           <h4>產品列表</h4>
           <div class="products-cont-list">
-            <div
-              class="products-cont-item"
-              v-for="(item, key) in products"
-              :key="key"
-            >
-              <div>
-                <div class="products-cont-item-img">
-                  <img :src="item.image" alt="" />
+            <transition-group name="products-fade" tag="div">
+              <div
+                class="products-cont-item"
+                v-for="(item, key) in filterProducts"
+                :key="key"
+              >
+                <div>
+                  <div class="products-cont-item-img">
+                    <img :src="item.image" alt="" />
+                  </div>
+                  <div class="products-cont-item-info">
+                    <p>{{ item.title }}</p>
+                    <p>{{ item.description }}</p>
+                    <p>{{ item.price }}</p>
+                    <p>{{ item.origin_price }}</p>
+                    <router-link to="" class="learn-more">查看細節</router-link>
+                  </div>
                 </div>
-                <div class="products-cont-item-info">
-                  <p>{{ item.title }}</p>
-                  <p>{{ item.description }}</p>
-                  <p>{{ item.price }}</p>
-                  <p>{{ item.origin_price }}</p>
-                  <router-link to="" class="learn-more">查看細節</router-link>
+                <div>
+                  <div class="products-cont-item-btn">
+                    <button @click="addCount(item)">+</button>
+                    <input
+                      type="number"
+                      v-model="item.count"
+                      @keypress="keypress"
+                      @input="checkCount"
+                      oninput="if(value.length>3)value=value.slice(0,3)"
+                      id="countNumb"
+                    />
+                    <button @click="decreaseCount(item)">-</button>
+                  </div>
+                  <button
+                    class="main-btn"
+                    @click="addCart(item.id, item.count)"
+                  >
+                    加入購物車
+                  </button>
                 </div>
               </div>
-              <div>
-                <div class="products-cont-item-btn">
-                  <button @click="addCount(item)">+</button>
-                  <input
-                    type="number"
-                    v-model="item.count"
-                    @keypress="keypress"
-                    @input="checkCount"
-                    oninput="if(value.length>3)value=value.slice(0,3)"
-                    id="countNumb"
-                  />
-                  <button @click="decreaseCount(item)">-</button>
-                </div>
-                <button class="main-btn" @click="addCart(item.id, (qty = 1))">
-                  加入購物車
-                </button>
-              </div>
-            </div>
+            </transition-group>
           </div>
         </div>
       </div>
@@ -90,6 +99,7 @@
   </div>
 </template>
 <script>
+// import { computeModeSetting } from 'node_modules/vee-validate/dist/types/components/common'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'products',
@@ -122,30 +132,30 @@ export default {
     },
     decreaseCount (item) {
       this.$store.commit('products/COUNTDECREASE', item)
-    },
-    checkCart () {
-      let id = '-MVsnOSnTKB-PgR5zwOW'
-      this.$store.state.products.cart.carts.some(res => {
-        if (res.product_id === id) {
-          console.log('重複')
-          return true
-        }
-      })
-      const find = this.$store.state.products.cart.carts.find(res => res.product_id === id)
-      console.log(find, 'find')
-      console.log(this.$store.state.products.cart)
     }
   },
   computed: {
     ...mapGetters('products', ['products', 'category']),
-    ...mapGetters(['isLoading'])
+    ...mapGetters(['isLoading']),
+    Nowcategory () {
+      // 取得現在網址的位置
+      return this.$route.params.category
+    },
+    filterProducts () {
+      // 監聽網址過濾的分類 進行產品過濾
+      let filter = this.products.filter(res => {
+        if (this.Nowcategory === 'all') {
+          return res
+        } else {
+          return res.category === this.Nowcategory
+        }
+      })
+      return filter
+    }
   },
   created () {
     this.getProducts()
-    const vm = this
-    setTimeout(res => {
-      vm.checkCart()
-    }, 2000)
+    this.Nowcategory = this.$route.params.category
   }
 }
 </script>

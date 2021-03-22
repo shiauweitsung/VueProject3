@@ -25,7 +25,7 @@ const routes: Array<RouteConfig> = [
         component: () => import('../pages/login.vue')
       },
       {
-        path: 'products',
+        path: 'products/:category',
         name: 'products',
         component: () => import('../pages/products.vue')
       },
