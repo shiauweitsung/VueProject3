@@ -40,6 +40,7 @@
         .header-list-products {
           opacity: 1;
           height: 150px;
+          display: block;
 
           &>li>a {
             animation: totop 0.4s ease-in-out forwards;
@@ -67,12 +68,13 @@
     &-products {
       height: 0px;
       opacity: 0;
+      display: none;
       padding-left: 0px;
       position: absolute;
       left: 50%;
       transform: translateX(-50%) translateY(0px);
       transition: ease-in-out .3s;
-      margin-top: 15px;
+      margin-top: 10px;
       padding: 10px 20px;
       width: 120px;
       background-color: map-get($color, bgcolor);
@@ -212,22 +214,26 @@
             display: flex;
             text-align: center;
             align-items: center;
+            padding: 5px 0px;
+            border-bottom: 1px solid map-get($color, bgproduct);
 
             &>div {
-              margin-bottom: 5px;
+              margin: 5px 0px;
 
               &>img {
                 width: 60px;
                 height: 60px;
               }
             }
-
-            &>button {}
           }
         }
 
         &-img {
           width: 80px;
+
+          &>img {
+            border: 1px solid map-get($color, bgproduct);
+          }
         }
 
         &-txt {
@@ -240,6 +246,13 @@
 
         &-btn {
           width: 50px;
+        }
+
+        &-total {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+          margin-bottom: 10px;
         }
       }
     }

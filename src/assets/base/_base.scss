@@ -289,16 +289,38 @@ textarea {
   }
 }
 
-// transition fade animation
+// transition animation
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+.category-enter-active,
+.category-leave-active {
+  transition: .5s ease-in-out;
 }
 
-.fade-enter,
-.fade-leave-to {
+.category-enter,
+.category-leave-to {
+  transform: translateY(-50px);
   opacity: 0;
+}
+
+.products-enter-active {
+  // 新增進場特效
+  transition: all 1s ease-in-out;
+}
+
+.products-leave-active {
+  // 新增退場特效
+  transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.products-enter {
+  // 設定進場動線
+  transform: translateX(100px);
+}
+
+.products-leave-to {
+  // 設定退場動線
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 // loading

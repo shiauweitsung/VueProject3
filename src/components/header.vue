@@ -122,6 +122,14 @@
                     </button>
                   </div>
                 </li>
+                <div class="header-account-cart-list-total">
+                  <div>總金額: {{ cart.final_total }}</div>
+                  <div>
+                    <router-link to="/cart" class="main-btn"
+                      >結帳去</router-link
+                    >
+                  </div>
+                </div>
               </ul>
               <ul v-else>
                 <li>目前沒有任何購物車商品</li>
