@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('../pages/cart.vue')
       },
       {
+        path: 'ordercheck/:id',
+        name: 'ordercheck/:id',
+        component: () => import('../pages/orderCheck.vue')
+      },
+      {
         path: 'circle',
         name: 'circle',
         component: () => import('../components/circle.vue')

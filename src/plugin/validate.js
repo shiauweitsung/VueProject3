@@ -28,3 +28,13 @@ configure({
   }
 })
 localize('zh_TW', TW)
+// custom rule
+extend('phonenumber', {
+  validate: value => {
+    const num = /^[09]{2}[0-9]{8}$/
+    if (value.match(num)) {
+      return true
+    }
+  },
+  message: '手機格式錯誤'
+})

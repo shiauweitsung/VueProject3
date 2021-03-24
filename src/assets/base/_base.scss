@@ -106,6 +106,7 @@ body {
   overflow-x: hidden;
   // font-family: 'ZCOOL XiaoWei', serif;
   font-family: 'Noto Serif TC', serif;
+  letter-spacing: 2px;
 }
 
 h1,
@@ -222,8 +223,35 @@ textarea {
 }
 
 // validate class
+.is-invalid {
+  border: 1px solid map-get($color, red);
+  background-color: #fff;
+  background-image: url('~@/assets/images/icon/error.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 5px);
+  background-size: 20px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.is-valid {
+  border: 1px solid map-get($color, main);
+  background-color: #fff;
+  background-image: url('~@/assets/images/icon/correct.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 5px);
+  background-size: 20px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .error-txt {
-  color: rgb(255, 78, 78);
+  display: block;
+  color: map-get($color, red);
 }
 
 // back content layout
