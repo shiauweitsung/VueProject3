@@ -1,5 +1,18 @@
 <template>
   <div class="back-wrap">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-spin-vr67c069ls">
+        <div class="ldio-i4ihhev39wf">
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+        </div>
+      </div>
+    </loading>
     <h2 class="back-title">產品列表</h2>
     <button
       type="button"
@@ -190,6 +203,7 @@ export default {
       const formData = new FormData()
       formData.append('file-to-upload', updatefile)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
+      this.$store.dispatch('updateLoading', true)
       this.$http.post(url, formData, {
         header: {
           'Content-Type': 'multipart/form-data'
@@ -199,6 +213,7 @@ export default {
         if (res.data.success) {
           vm.$set(vm.modalproduct, 'image', res.data.imageUrl)
         }
+        this.$store.dispatch('updateLoading', false)
       })
     },
     updateProduct (item) {
@@ -215,6 +230,7 @@ export default {
   },
   computed: {
     ...mapGetters('backProducts', ['products', 'modalproduct']),
+    ...mapGetters(['isLoading']),
     message: {
       get () {
         return this.$store.state.backProducts.modalProduct.description
