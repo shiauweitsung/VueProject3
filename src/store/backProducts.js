@@ -6,6 +6,7 @@ export default {
     backProducts: [],
     modalProduct: [],
     thisProduct: '',
+    isNew: true,
     modalNew: false
   },
   actions: {
@@ -29,11 +30,16 @@ export default {
     openModal (context, item) {
       context.commit('MODALPRODUCT', item)
     },
-    updateProduct (context, item) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
-      axios.put(url, { data: item }).then(res => {
+    updateProduct ({ dispatch, state }, item) {
+      let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${item.id}`
+      let methods = 'put'
+      if (state.isNew) {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product`
+        methods = 'post'
+      }
+      axios[methods](url, { data: item }).then(res => {
         if (res.data.success) {
-          context.dispatch('getProducts')
+          dispatch('getProducts')
           $('#modalproducts').modal('hide')
         }
       })
@@ -53,8 +59,13 @@ export default {
       state.backProducts = payload
     },
     MODALPRODUCT (state, payload) {
+      state.isNew = payload.productNew
       state.modalProduct = payload.item
       $('#modalproducts').modal('show')
+    },
+    UPDATEFILE (state, payload) {
+      console.log(payload)
+      state.modalProduct.image = payload
     },
     // UPDATEMOUDLEPRODUCT (state, value) {
     //   // VUEX雙向綁定方法 藉由state 讀取components的 computed值 進行修改

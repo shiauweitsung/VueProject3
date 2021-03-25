@@ -18,7 +18,7 @@
       type="button"
       class="main-btn"
       data-toggle="modal"
-      @click="openModal({})"
+      @click="openModal({}, (productNew = true))"
     >
       建立新產品
     </button>
@@ -58,7 +58,12 @@
         </button>
         <transition name="fade">
           <div class="back-products-item-btn-edit" v-if="item.show">
-            <button class="main-btn" @click="openModal(item)">修改</button>
+            <button
+              class="main-btn"
+              @click="openModal(item, (productNew = false))"
+            >
+              修改
+            </button>
             <button class="main-btn" @click="delProducts(item)">刪除</button>
           </div>
         </transition>
@@ -172,14 +177,15 @@ const { mapFields } = createHelpers({
 })
 export default {
   name: 'backProducts',
+  data () {
+    return {
+      productNew: false
+    }
+  },
   methods: {
     ...mapActions('backProducts', ['getProducts']),
-    openModal (item) {
-      console.log(item)
-      this.$store.dispatch({
-        type: 'backProducts/openModal',
-        item: item
-      })
+    openModal (item, productNew) {
+      this.$store.dispatch('backProducts/openModal', { item, productNew })
       // console.log(this.$store.state.backProducts.modalProduct)
     },
     editshow (item) {
@@ -199,13 +205,13 @@ export default {
       }).then(res => {
         console.log(res)
         if (res.data.success) {
-          vm.$set(vm.modalproduct, 'image', res.data.imageUrl)
+          // vm.$set(vm.modalproduct, 'image', res.data.imageUrl)
+          vm.$store.commit('backProducts/UPDATEFILE', res.data.imageUrl)
         }
         this.$store.dispatch('updateLoading', false)
       })
     },
     updateProduct (item) {
-      console.log(item)
       this.$store.dispatch('backProducts/updateProduct', item)
     },
     delProducts (item) {
