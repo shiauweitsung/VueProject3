@@ -12,7 +12,6 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    name: 'Home',
     component: Home,
     children: [
       {
@@ -48,11 +47,18 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/admin',
-    name: 'backHome',
+    // name: 'backHome',
     component: () => import('../backEnd/backHome.vue'),
     children: [{
       path: '/',
+      name: 'product',
       component: () => import('../backEnd/backProducts.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: 'coupon',
+      name: 'coupon',
+      component: () => import('../backEnd/backCoupon.vue'),
       meta: { requiresAuth: true }
     }]
   }

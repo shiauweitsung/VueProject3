@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import backProducts from './backProducts'
+import backCoupon from './backCoupon'
 import products from './products'
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
   },
   modules: {
     backProducts,
+    backCoupon,
     products
   }
 })

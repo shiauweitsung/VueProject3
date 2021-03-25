@@ -93,7 +93,7 @@
                   <p>上傳圖片網址 :</p>
                   <input type="file" ref="file" @change="updateFiled" />
                   <label for="imgUrl">網址 : </label>
-                  <input type="text" id="imgUrl" :value="modalproduct.image" />
+                  <input type="text" id="imgUrl" v-model="image" />
                 </div>
                 <img
                   :src="modalproduct.image"
@@ -103,43 +103,27 @@
               </div>
               <div class="modal-products-title">
                 <label for="product-title">名稱 : </label>
-                <input
-                  type="text"
-                  id="product-title"
-                  :value="modalproduct.title"
-                />
+                <input type="text" id="product-title" v-model="title" />
               </div>
               <div class="modal-products-txt">
                 <div class="modal-products-txt-category">
                   <label for="product-category">分類 : </label>
-                  <input
-                    type="text"
-                    id="product-category"
-                    :value="modalproduct.category"
-                  />
+                  <input type="text" id="product-category" v-model="category" />
                 </div>
                 <div class="modal-products-txt-unit">
                   <label for="product-unit">單位 : </label>
-                  <input
-                    type="text"
-                    id="product-unit"
-                    :value="modalproduct.unit"
-                  />
+                  <input type="text" id="product-unit" v-model="unit" />
                 </div>
                 <div class="modal-products-txt-price">
                   <label for="product-price">價錢 : </label>
-                  <input
-                    type="text"
-                    id="product-price"
-                    :value="modalproduct.price"
-                  />
+                  <input type="text" id="product-price" v-model="price" />
                 </div>
                 <div class="modal-products-txt-origin">
                   <label for="product-origin_price">原價 : </label>
                   <input
                     type="text"
                     id="product-origin_price"
-                    :value="modalproduct.origin_price"
+                    v-model="origin_price"
                   />
                 </div>
               </div>
@@ -150,7 +134,7 @@
                   rows="10"
                   type="text"
                   id="product-description"
-                  v-model="message"
+                  v-model="description"
                 />
               </div>
               <div class="modal-products-cont">
@@ -160,7 +144,7 @@
                   rows="10"
                   type="text"
                   id="product-content"
-                  :value="modalproduct.content"
+                  v-model="content"
                 />
               </div>
             </form>
@@ -181,6 +165,11 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { createHelpers } from 'vuex-map-fields'
+const { mapFields } = createHelpers({
+  getterType: 'backProducts/getMoudleProduct',
+  mutationType: 'backProducts/updateMoudle'
+})
 export default {
   name: 'backProducts',
   methods: {
@@ -191,10 +180,9 @@ export default {
         type: 'backProducts/openModal',
         item: item
       })
-      console.log(this.$store.state.backProducts.modalProduct)
+      // console.log(this.$store.state.backProducts.modalProduct)
     },
     editshow (item) {
-      console.log(item)
       this.$store.commit('backProducts/EDITSHOW', item)
     },
     updateFiled () {
@@ -231,18 +219,19 @@ export default {
   computed: {
     ...mapGetters('backProducts', ['products', 'modalproduct']),
     ...mapGetters(['isLoading']),
-    message: {
-      get () {
-        return this.$store.state.backProducts.modalProduct.description
-      },
-      set (value) {
-        this.$store.commit('backProducts/UPDATEMOUDLEPRODUCT', value)
-      }
-    }
+    // message: {
+    //  vuex input值 雙向綁定方法
+    //   get () {
+    //     return this.$store.state.backProducts.modalProduct.description
+    //   },
+    //   set (value) {
+    //     this.$store.commit('backProducts/UPDATEMOUDLEPRODUCT', value)
+    //   }
+    // },
+    ...mapFields(['title', 'image', 'unit', 'category', 'origin_price', 'price', 'description', 'content'])
   },
   created () {
     this.getProducts()
-    console.log(this.$store.state.backProducts.modalProduct.description)
   }
 }
 </script>

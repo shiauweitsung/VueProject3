@@ -256,3 +256,23 @@
     transform: scale(1);
   }
 }
+
+.add-cart-btn {
+  width: 24px;
+  height: 24px;
+  fill: map-get($color, three);
+  transition: all .4s;
+
+  &:hover {
+    fill: map-get($color, main);
+  }
+}
+
+.del-cart-btn {
+  fill: map-get($color, red);
+  transition: all .4s;
+
+  &:hover {
+    fill: map-get($color, main);
+  }
+}

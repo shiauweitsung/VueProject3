@@ -6,6 +6,7 @@ import router from './router'
 import 'jquery'
 import 'bootstrap'
 import '@/assets/all.scss'
+import dateFilter from './filter/date'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import validation from './plugin/validate.js'
@@ -21,6 +22,7 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
 Vue.use(VueAxios, axios)
 Vue.use(VueAwesomeSwiper)
 Vue.component('Loading', Loading)
+Vue.filter('date', dateFilter)
 Vue.config.productionTip = false
 
 new Vue({

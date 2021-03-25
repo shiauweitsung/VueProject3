@@ -41,6 +41,10 @@
         &>a {
           color: map-get($color, three);
 
+          &:hover {
+            color: map-get($color, main);
+          }
+
           &>li {
             margin-top: 15px;
             border-radius: 20px;

@@ -1,0 +1,141 @@
+<template>
+  <div class="back-wrap">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-spin-vr67c069ls">
+        <div class="ldio-i4ihhev39wf">
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+        </div>
+      </div>
+    </loading>
+    <h2>coupon</h2>
+    <button
+      type="button"
+      class="main-btn"
+      data-toggle="modal"
+      @click="openModal({}, (CouponisNew = true))"
+    >
+      新增優惠券
+    </button>
+    <table class="coupon-table">
+      <thead>
+        <tr>
+          <td>優惠名稱</td>
+          <td>編號</td>
+          <td>優惠折數</td>
+          <td>到期日</td>
+          <td>編輯</td>
+        </tr>
+      </thead>
+      <tbody v-for="(item, key) in coupon" :key="key" style="color: white">
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.percent }}</td>
+          <td>{{ item.due_date | date }}</td>
+          <td>
+            <button
+              @click="openModal(item, (CouponisNew = false))"
+              class="main-btn"
+            >
+              修改
+            </button>
+            <button class="main-btn" @click="delCoupon(item.id)">刪除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="couponModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="">title</label>
+            <input type="text" v-model="title" />
+            <label for="">percent</label>
+            <input type="text" v-model="percent" />
+            <label for="">code</label>
+            <input type="text" v-model="code" />
+            <label for="">到期日</label>
+            <input type="date" v-model="due_date" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="addCoupon(moudleCoupon)"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { createHelpers } from 'vuex-map-fields'
+import { mapActions, mapGetters } from 'vuex'
+const { mapFields } = createHelpers({
+  getterType: 'backCoupon/getMoudleCoupon',
+  mutationType: 'backCoupon/updateMoudleCoupon'
+})
+export default {
+  name: 'backCoupon',
+  data () {
+    return {
+      CouponisNew: false
+    }
+  },
+  methods: {
+    addCoupon (item) {
+      this.$store.dispatch('backCoupon/addCoupon', item)
+    },
+    delCoupon (id) {
+      this.$store.dispatch('backCoupon/delCoupon', id)
+    },
+    openModal (item, CouponisNew) {
+      this.$store.dispatch('backCoupon/openModal', { item, CouponisNew })
+    },
+    ...mapActions('backCoupon', ['getCoupon'])
+  },
+  computed: {
+    ...mapGetters('backCoupon', ['coupon', 'moudleCoupon']),
+    ...mapGetters(['isLoading']),
+    ...mapFields(['title', 'percent', 'code', 'due_date'])
+  },
+  created () {
+    this.getCoupon()
+  }
+}
+</script>

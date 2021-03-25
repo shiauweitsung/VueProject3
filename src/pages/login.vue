@@ -1,5 +1,18 @@
 <template>
   <div class="wrap">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-spin-vr67c069ls">
+        <div class="ldio-i4ihhev39wf">
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+        </div>
+      </div>
+    </loading>
     <div class="content">
       <div class="login">
         <div class="login-left">
@@ -51,6 +64,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'login',
   data () {
@@ -65,6 +79,7 @@ export default {
     onSubmit () {
       const vm = this
       const url = `${process.env.VUE_APP_API}/admin/signin`
+      this.$store.dispatch('updateLoading', true)
       this.$refs.form.validate().then(success => {
         if (!success) {
           alert('請正確填寫資料')
@@ -78,10 +93,14 @@ export default {
             } else {
               alert('帳號密碼錯誤')
             }
+            this.$store.dispatch('updateLoading', false)
           })
         }
       })
     }
+  },
+  computed: {
+    ...mapGetters(['isLoading'])
   }
 }
 </script>
