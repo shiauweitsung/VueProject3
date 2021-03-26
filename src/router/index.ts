@@ -60,6 +60,12 @@ const routes: Array<RouteConfig> = [
       name: 'coupon',
       component: () => import('../backEnd/backCoupon.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: 'order',
+      name: 'order',
+      component: () => import('../backEnd/backOrder.vue'),
+      meta: { requiresAuth: true }
     }]
   }
 ]

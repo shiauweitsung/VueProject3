@@ -13,10 +13,10 @@
         </div>
       </div>
     </loading>
-    <h2>coupon</h2>
+    <h2 class="mb-4">優惠券列表</h2>
     <button
       type="button"
-      class="main-btn"
+      class="main-btn mb-4"
       data-toggle="modal"
       @click="openModal({}, (CouponisNew = true))"
     >
@@ -27,21 +27,21 @@
         <tr>
           <td>優惠名稱</td>
           <td>編號</td>
-          <td>優惠折數</td>
-          <td>到期日</td>
-          <td>編輯</td>
+          <td align="center">優惠折數</td>
+          <td align="center">到期日</td>
+          <td align="center">編輯</td>
         </tr>
       </thead>
       <tbody v-for="(item, key) in coupon" :key="key" style="color: white">
         <tr>
           <td>{{ item.title }}</td>
           <td>{{ item.id }}</td>
-          <td>{{ item.percent }}</td>
-          <td>{{ item.due_date | date }}</td>
-          <td>
+          <td align="center">{{ item.percent }}</td>
+          <td align="center">{{ item.due_date | date }}</td>
+          <td align="center">
             <button
               @click="openModal(item, (CouponisNew = false))"
-              class="main-btn"
+              class="main-btn mr-2"
             >
               修改
             </button>
@@ -83,19 +83,15 @@
             <input type="date" v-model="due_date" />
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
+            <button type="button" class="main-btn" data-dismiss="modal">
+              關閉
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="main-btn"
               @click="addCoupon(moudleCoupon)"
             >
-              Save changes
+              完成
             </button>
           </div>
         </div>
