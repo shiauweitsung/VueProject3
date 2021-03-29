@@ -66,12 +66,20 @@
             <input type="text" v-model="orderModal.user.tel" />
             <label for="email"></label>
             <input type="text" v-model="orderModal.user.email" />
+            <label for="address"></label>
+            <input type="text" v-model="orderModal.user.address" />
           </div>
           <div class="modal-footer">
             <button type="button" class="main-btn" data-dismiss="modal">
               關閉
             </button>
-            <button type="button" class="main-btn">完成</button>
+            <button
+              type="button"
+              class="main-btn"
+              @click="editOrder(orderModal.id)"
+            >
+              完成
+            </button>
           </div>
         </div>
       </div>
@@ -84,18 +92,36 @@ export default {
   name: 'backOrder',
   data () {
     return {
-      orderModal: []
+      orderModal: {
+        user: {
+          name: '',
+          tel: '',
+          address: '',
+          email: ''
+        }
+      }
     }
   },
   methods: {
     ...mapActions('backOrder', ['getOrder']),
     openModal (item) {
       console.log(item)
-      this.orderModal = item
+      // 將傳進去的物件 進行深拷貝，以面畫面上被渲染
+      this.orderModal = JSON.parse(JSON.stringify(item))
       $('#backOrder').modal('show')
     },
     editOrder (id) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/order/${id}`
+      const vm = this
+      vm.$store.commit('UPDATELOADING', true)
+      this.$http.put(url, { data: vm.orderModal }).then(res => {
+        console.log(res)
+        if (res.data.success) {
+          vm.$store.dispatch('backOrder/getOrder')
+        }
+        vm.$store.commit('UPDATELOADING', false)
+        $('#backOrder').modal('hide')
+      })
     }
   },
   computed: {

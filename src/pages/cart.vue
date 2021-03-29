@@ -36,45 +36,58 @@
             <div class="cart-cont-list">
               <div class="cart-cont-list-title">
                 <p>購物車明細</p>
-                <p @click="cartShow = !cartShow">展開 收合</p>
+                <p @click="cartShow = !cartShow">
+                  <span v-if="cartShow">收合</span> <span v-else>展開</span>
+                  <span :class="{ rotate180: !cartShow }"></span>
+                </p>
               </div>
-              <div v-if="cartShow">
-                <div class="cart-cont-list-info">
-                  <div class="cart-cont-list-info-header">
-                    <div class="cart-cont-list-info-title">產品</div>
-                    <div class="cart-cont-list-info-count">數量</div>
-                    <div class="cart-cont-list-info-price">價錢</div>
+              <transition name="category">
+                <div v-if="cartShow">
+                  <div class="cart-cont-list-info">
+                    <div class="cart-cont-list-info-header">
+                      <div class="cart-cont-list-info-title">產品</div>
+                      <div class="cart-cont-list-info-count">數量</div>
+                      <div class="cart-cont-list-info-price">價錢</div>
+                    </div>
+                    <div
+                      class="cart-cont-list-info-item"
+                      v-for="(item, key) in cart.carts"
+                      :key="key"
+                    >
+                      <div class="cart-cont-list-info-title">
+                        <img :src="item.product.image" alt="" />
+                        <span>{{ item.product.title }}</span>
+                      </div>
+                      <div class="cart-cont-list-info-count">
+                        {{ item.qty }}
+                      </div>
+                      <div class="cart-cont-list-info-price">
+                        $ {{ item.product.price }}
+                      </div>
+                    </div>
                   </div>
-                  <div
-                    class="cart-cont-list-info-item"
-                    v-for="(item, key) in cart.carts"
-                    :key="key"
-                  >
-                    <div class="cart-cont-list-info-title">
-                      <img :src="item.product.image" alt="" />
-                      <span>{{ item.product.title }}</span>
-                    </div>
-                    <div class="cart-cont-list-info-count">
-                      {{ item.qty }}
-                    </div>
-                    <div class="cart-cont-list-info-price">
-                      {{ item.product.price }}
+                  <div class="cart-cont-list-total">
+                    <p>
+                      商品金額 : $ <span>{{ cart.total | integer }}</span>
+                    </p>
+                    <p v-if="cart.final_total != cart.total" class="error-txt">
+                      折扣後金額 : $
+                      <span>{{ cart.final_total | integer }}</span>
+                    </p>
+                    <p>運費小計 : <span> 0 </span></p>
+                  </div>
+                  <div class="cart-cont-list-coupon">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="請輸入優惠代碼"
+                        v-model="coupon"
+                      />
+                      <button @click="useCoupon">套用優惠</button>
                     </div>
                   </div>
                 </div>
-                <div class="cart-cont-list-total">
-                  <p>
-                    商品金額 : <span>{{ cart.final_total }}</span>
-                  </p>
-                  <p>運費小計 : <span> 0 </span></p>
-                </div>
-                <div class="cart-cont-list-coupon">
-                  <div>
-                    <input type="text" placeholder="請輸入優惠代碼" />
-                    <button>套用優惠</button>
-                  </div>
-                </div>
-              </div>
+              </transition>
               <div class="cart-cont-next">
                 <router-link to="/products/all">繼續購物</router-link>
                 <button @click="currentStep++">下一步</button>
@@ -177,7 +190,8 @@ export default {
       userForm: {
         user: {},
         message: ''
-      }
+      },
+      coupon: ''
     }
   },
   methods: {
@@ -197,6 +211,12 @@ export default {
           }
         })
       })
+    },
+    useCoupon () {
+      const coupon = {
+        code: this.coupon
+      }
+      this.$store.dispatch('products/useCoupon', coupon)
     }
   },
   computed: {

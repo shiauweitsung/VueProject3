@@ -29,6 +29,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('../pages/products.vue')
       },
       {
+        path: 'product/:id',
+        name: 'product_detail',
+        component: () => import('../pages/product_detail.vue')
+      },
+      {
         path: 'cart',
         name: 'cart',
         component: () => import('../pages/cart.vue')

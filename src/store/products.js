@@ -3,6 +3,7 @@ export default {
   namespaced: true,
   state: {
     products: [],
+    product: [],
     category: [],
     cart: [],
     cartLength: '',
@@ -22,6 +23,16 @@ export default {
           context.commit('CATEGORY', res.data.products)
           context.commit('UPDATELOADING', false, { root: true })
         }
+      })
+    },
+    getProductDetail (context, id) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      context.commit('UPDATELOADING', true, { root: true })
+      axios.get(url).then(res => {
+        if (res.data.success) {
+          context.commit('GETPRODUCTDETAIL', res.data.product)
+        }
+        context.commit('UPDATELOADING', false, { root: true })
       })
     },
     addCartAPI (context, carts) {
@@ -79,11 +90,24 @@ export default {
         }
         context.commit('UPDATELOADING', false, { root: true })
       })
+    },
+    useCoupon (context, coupon) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
+      context.commit('UPDATELOADING', true, { root: true })
+      axios.post(url, { data: coupon }).then(res => {
+        if (res.data.success) {
+          context.dispatch('getCart')
+        }
+        context.commit('UPDATELOADING', false, { root: true })
+      })
     }
   },
   mutations: {
     PRODUCTS (state, payload) {
       state.products = payload
+    },
+    GETPRODUCTDETAIL (state, payload) {
+      state.product = payload
     },
     ADDOLDCART (state, payload) {
       console.log(state, payload)
@@ -160,6 +184,7 @@ export default {
   },
   getters: {
     products: state => state.products,
+    product: state => state.product,
     category: state => state.category,
     cart: state => state.cart,
     cartlength: state => state.cartLength

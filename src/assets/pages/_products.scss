@@ -276,3 +276,28 @@
     fill: map-get($color, main);
   }
 }
+
+.origin-price {
+  text-decoration: line-through;
+}
+
+.sale-price {
+  color: map-get($color, second);
+}
+
+.product_detail-cont {
+  display: flex;
+  width: 90%;
+  margin: auto;
+
+  &-left {
+    max-width: 50%;
+    flex-basis: 50%;
+    text-align: center;
+  }
+
+  &-right {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+}

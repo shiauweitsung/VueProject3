@@ -105,9 +105,15 @@
                   <div class="products-cont-item-info">
                     <p>{{ item.title }}</p>
                     <p>{{ item.description }}</p>
-                    <p>{{ item.price }}</p>
-                    <p>{{ item.origin_price }}</p>
-                    <router-link to="" class="learn-more">查看細節</router-link>
+                    <p class="origin-price">原價 ${{ item.price }}</p>
+                    <p class="sale-price mb-4">特價 ${{ item.origin_price }}</p>
+                    <button
+                      to=""
+                      class="learn-more"
+                      @click="productDetail(item.id)"
+                    >
+                      查看細節
+                    </button>
                   </div>
                 </div>
                 <div>
@@ -220,6 +226,10 @@ export default {
       this.elLeft = event.target.getBoundingClientRect().left
       this.elTop = event.target.getBoundingClientRect().top
       this.dropimg = product.image
+    },
+    productDetail (id) {
+      console.log(id)
+      this.$router.push(`/product/${id}`)
     },
     keypress (e) {
       if (e.key === '+' || e.key === 'e' || e.key === '-') {

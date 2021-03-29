@@ -60,7 +60,7 @@ export default {
     },
     MODALPRODUCT (state, payload) {
       state.isNew = payload.productNew
-      state.modalProduct = payload.item
+      state.modalProduct = JSON.parse(JSON.stringify(payload.item))
       $('#modalproducts').modal('show')
     },
     UPDATEFILE (state, payload) {

@@ -26,7 +26,7 @@
       <thead>
         <tr>
           <td>優惠名稱</td>
-          <td>編號</td>
+          <td>優惠代碼</td>
           <td align="center">優惠折數</td>
           <td align="center">到期日</td>
           <td align="center">編輯</td>
@@ -35,7 +35,7 @@
       <tbody v-for="(item, key) in coupon" :key="key" style="color: white">
         <tr>
           <td>{{ item.title }}</td>
-          <td>{{ item.id }}</td>
+          <td>{{ item.code }}</td>
           <td align="center">{{ item.percent }}</td>
           <td align="center">{{ item.due_date | date }}</td>
           <td align="center">
@@ -73,12 +73,12 @@
             </button>
           </div>
           <div class="modal-body">
-            <label for="">title</label>
+            <label for="">優惠名稱</label>
             <input type="text" v-model="title" />
-            <label for="">percent</label>
-            <input type="text" v-model="percent" />
-            <label for="">code</label>
+            <label for="">優惠代碼</label>
             <input type="text" v-model="code" />
+            <label for="">折數</label>
+            <input type="text" v-model="percent" />
             <label for="">到期日</label>
             <input type="date" v-model="due_date" />
           </div>

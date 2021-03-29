@@ -24,3 +24,7 @@ $color:(main:#34e89e,
     color: map-get($color, main);
   }
 }
+
+.color-grey {
+  color: grey;
+}
