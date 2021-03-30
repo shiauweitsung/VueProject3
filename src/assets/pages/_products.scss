@@ -299,5 +299,26 @@
   &-right {
     max-width: 50%;
     flex-basis: 50%;
+
+    &-count {
+
+      &>div {
+        display: flex;
+        border: 1px solid map-get($color, three);
+        width: 104px;
+
+        &>button {
+          color: map-get($color, three);
+          padding: 10px;
+        }
+
+        &>input {
+          width: 50px;
+          text-align: center;
+          border: none;
+          border-radius: 0px;
+        }
+      }
+    }
   }
 }

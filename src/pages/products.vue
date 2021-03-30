@@ -206,6 +206,8 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { mapMultiRowFields } from 'vuex-map-fields'
+
 export default {
   name: 'products',
   data () {
@@ -228,7 +230,6 @@ export default {
       this.dropimg = product.image
     },
     productDetail (id) {
-      console.log(id)
       this.$router.push(`/product/${id}`)
     },
     keypress (e) {
@@ -238,10 +239,14 @@ export default {
     },
     checkCount (e) {
       let value = Number(e.target.value)
-      console.log(e)
+      console.log(e.target.value.length)
+      const vm = this
       if (value < 1 || value === '' || value === 0) {
-        e.target.value = 1
+        e.target.value = 0
         alert('最小數量為1 不可為0或是空白')
+      }
+      if (e.target.value.length > 3) {
+        e.target.value = e.target.value.slice(0, 3)
       }
     },
     addCount (item) {
@@ -302,6 +307,7 @@ export default {
   computed: {
     ...mapGetters('products', ['products', 'category']),
     ...mapGetters(['isLoading']),
+    ...mapMultiRowFields('products', ['products']),
     Nowcategory () {
       // 取得現在網址的位置
       return this.$route.params.category

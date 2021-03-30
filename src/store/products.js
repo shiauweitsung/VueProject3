@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getField, updateField } from 'vuex-map-fields'
 export default {
   namespaced: true,
   state: {
@@ -103,6 +104,7 @@ export default {
     }
   },
   mutations: {
+    updateField,
     PRODUCTS (state, payload) {
       state.products = payload
     },
@@ -167,7 +169,6 @@ export default {
       state.count = value
     },
     COUNTADD (state, value) {
-      console.log(value)
       if (value.count >= 999) {
         return true
       } else {
@@ -180,13 +181,20 @@ export default {
       } else {
         value.count--
       }
+    },
+    updateProduct (state, field) {
+      updateField(state.product, field)
     }
   },
   getters: {
+    getField,
     products: state => state.products,
     product: state => state.product,
     category: state => state.category,
     cart: state => state.cart,
-    cartlength: state => state.cartLength
+    cartlength: state => state.cartLength,
+    getProduct (state) {
+      return getField(state.product)
+    }
   }
 }

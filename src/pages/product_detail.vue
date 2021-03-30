@@ -1,31 +1,47 @@
 <template>
   <div class="wrap">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-spin-vr67c069ls">
+        <div class="ldio-i4ihhev39wf">
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+          <div><div></div></div>
+        </div>
+      </div>
+    </loading>
     <div class="content">
       <div class="product_detail-cont">
         <div class="product_detail-cont-left">
           <img :src="product.image" alt="" />
         </div>
         <div class="product_detail-cont-right">
-          <div class="product_detail-cont-rigth-title mb-3">
+          <div class="product_detail-cont-right-title mb-3">
             <h3>{{ product.title }}</h3>
           </div>
-          <div class="product_detail-cont-rigth-discount mb-3">
-            <button>折扣馬</button>
-          </div>
-          <div class="product_detail-cont-rigth-price mb-3">
+          <div class="product_detail-cont-right-discount mb-3"></div>
+          <div class="product_detail-cont-right-price mb-3">
             <p class="color-grey mb-3">建議售價 :</p>
             <span class="origin-price mr-3">${{ product.origin_price }}</span>
             <span class="sale-price">${{ product.price }}</span>
           </div>
-          <div class="product_detail-cont-rigth-count mb-3">
-            <p class="color-grey mb-2">數量 :</p>
+          <div class="product_detail-cont-right-count mb-3">
+            <p class="color-grey mb-3">數量 :</p>
             <div>
-              <button>-</button>
-              <input type="text" v-model="product.count" />
-              <button>+</button>
+              <button @click="decreaseCount(product)">-</button>
+              <input
+                type="text"
+                v-model="count"
+                @keypress="keypress"
+                @input="checkCount"
+              />
+              <button @click="addCount(product)">+</button>
             </div>
           </div>
-          <div class="product_detail-cont-rigth-btn">
+          <div class="product_detail-cont-right-btn">
             <button class="main-btn">Add To Cart</button>
           </div>
         </div>
@@ -71,7 +87,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div
-            class="tab-pane fade show active"
+            class="tab-pane fade show active mt-3"
             id="description"
             role="tabpanel"
             aria-labelledby="description"
@@ -79,7 +95,7 @@
             {{ product.description }}
           </div>
           <div
-            class="tab-pane fade"
+            class="tab-pane fade mt-3"
             id="content"
             role="tabpanel"
             aria-labelledby="content-tab"
@@ -87,12 +103,12 @@
             {{ product.content }}
           </div>
           <div
-            class="tab-pane fade"
+            class="tab-pane fade mt-3"
             id="contact"
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
-            <ul>
+            <ul class="pl-0">
               <li>如購買此網站商品，有任何問題請洽: (02)-1234-5678</li>
               <li>
                 官網網站商品有提供線上客服服務。line ID : razer123456 FB :
@@ -110,6 +126,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { createHelpers } from 'vuex-map-fields'
+const { mapFields } = createHelpers({
+  getterType: 'products/getProduct',
+  mutationType: 'products/updateProduct'
+})
 export default {
   name: 'product_detail',
   data () {
@@ -120,10 +141,31 @@ export default {
   methods: {
     getProductDetail () {
       this.$store.dispatch('products/getProductDetail', this.productId)
+    },
+    addCount (item) {
+      this.$store.commit('products/COUNTADD', item)
+    },
+    decreaseCount (item) {
+      this.$store.commit('products/COUNTDECREASE', item)
+    },
+    keypress (e) {
+      if (e.key === '+' || e.key === 'e' || e.key === '-') {
+        e.preventDefault()
+      }
+    },
+    checkCount (e) {
+      let value = Number(e.target.value)
+      console.log(e)
+      if (value < 1 || value === '' || value === 0) {
+        e.target.value = 1
+        alert('最小數量為1 不可為0或是空白')
+      }
     }
   },
   computed: {
-    ...mapGetters('products', ['product'])
+    ...mapGetters('products', ['product']),
+    ...mapGetters(['isLoading']),
+    ...mapFields(['count'])
   },
   created () {
     this.productId = this.$route.params.id

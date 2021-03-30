@@ -360,6 +360,21 @@ textarea {
   transform: rotate(180deg);
 }
 
+// tab
+.nav-tabs {
+  border-bottom: 1px solid map-get($color, bgcolor);
+}
+
+.nav-tabs .nav-link.active {
+  color: map-get($color, second);
+  background-color: map-get($color, bgcolor);
+  border-color: map-get($color, bgcolor);
+}
+
+.nav-tabs .nav-link {
+  color: map-get($color, three);
+}
+
 // loading
 @keyframes ldio-i4ihhev39wf {
   0% {
