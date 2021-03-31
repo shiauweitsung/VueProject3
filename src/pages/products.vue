@@ -1,21 +1,19 @@
 <template>
   <div class="wrap">
     <loading :active.sync="isLoading">
-      <div class="loadingio-spinner-spin-vr67c069ls">
-        <div class="ldio-i4ihhev39wf">
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
+      <div class="loadingio-spinner-ripple-bzo8opf0rpm">
+        <div class="ldio-zifyp9wz5z">
+          <div></div>
+          <div></div>
         </div>
       </div>
     </loading>
     <div class="content">
       <div class="recommend">
         <h4>為您推薦</h4>
+        <div v-for="(item, key) in productsPage" :key="key">
+          {{ item.title }}
+        </div>
       </div>
       <div class="products">
         <div class="products-category">
@@ -239,14 +237,9 @@ export default {
     },
     checkCount (e) {
       let value = Number(e.target.value)
-      console.log(e.target.value.length)
-      const vm = this
       if (value < 1 || value === '' || value === 0) {
         e.target.value = 0
         alert('最小數量為1 不可為0或是空白')
-      }
-      if (e.target.value.length > 3) {
-        e.target.value = e.target.value.slice(0, 3)
       }
     },
     addCount (item) {
@@ -290,6 +283,9 @@ export default {
       this.filterProducts.sort((a, b) => {
         return b.price - a.price
       })
+    },
+    getProductPage () {
+      this.$store.dispatch('products/getProductPage', 1)
     }
   },
   mounted () {
@@ -305,7 +301,7 @@ export default {
     })
   },
   computed: {
-    ...mapGetters('products', ['products', 'category']),
+    ...mapGetters('products', ['products', 'category', 'productsPage']),
     ...mapGetters(['isLoading']),
     ...mapMultiRowFields('products', ['products']),
     Nowcategory () {
@@ -335,6 +331,15 @@ export default {
   },
   created () {
     this.getProducts()
+    this.getProductPage()
+    window.addEventListener('scroll', () => {
+      let scrollTop = document.documentElement.scrollTop
+      let clientHeight = document.documentElement.clientHeight
+      let scrollHeight = document.documentElement.scrollHeight
+      if (scrollTop + clientHeight === scrollHeight) {
+        console.log('到底部了')
+      }
+    })
   }
 }
 </script>

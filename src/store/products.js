@@ -5,6 +5,7 @@ export default {
   state: {
     products: [],
     product: [],
+    productsPage: [],
     category: [],
     cart: [],
     cartLength: '',
@@ -16,12 +17,27 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       context.commit('UPDATELOADING', true, { root: true })
       axios.get(url).then(res => {
+        console.log(res)
         if (res.data.success) {
           Object.keys(res.data.products).forEach(item => {
             res.data.products[item].count = 1
           })
           context.commit('PRODUCTS', res.data.products)
           context.commit('CATEGORY', res.data.products)
+          context.commit('UPDATELOADING', false, { root: true })
+        }
+      })
+    },
+    getProductPage (context, page) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
+      context.commit('UPDATELOADING', true, { root: true })
+      axios.get(url).then(res => {
+        console.log(res, 'page')
+        if (res.data.success) {
+          Object.keys(res.data.products).forEach(item => {
+            res.data.products[item].count = 1
+          })
+          context.commit('PRODUCTSPAGE', res.data.products)
           context.commit('UPDATELOADING', false, { root: true })
         }
       })
@@ -108,6 +124,9 @@ export default {
     PRODUCTS (state, payload) {
       state.products = payload
     },
+    PRODUCTSPAGE (state, payload) {
+      state.productsPage = payload
+    },
     GETPRODUCTDETAIL (state, payload) {
       state.product = payload
     },
@@ -189,6 +208,7 @@ export default {
   getters: {
     getField,
     products: state => state.products,
+    productsPage: state => state.productsPage,
     product: state => state.product,
     category: state => state.category,
     cart: state => state.cart,

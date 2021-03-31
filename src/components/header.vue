@@ -50,121 +50,154 @@
           </a>
         </h1>
       </div>
-      <div class="header-list">
-        <ul>
-          <li><router-link to="/about">News</router-link></li>
-          <li id="header-list-product">
-            <router-link to="/products/all">Products</router-link>
-            <ul class="header-list-products">
-              <li>
-                <router-link
-                  style="--i: 1"
-                  :to="{ name: 'products', params: { category: '滑鼠' } }"
-                  >Mice</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  style="--i: 2"
-                  :to="{ name: 'products', params: { category: '鍵盤' } }"
-                  >keyboard</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  style="--i: 3"
-                  :to="{ name: 'products', params: { category: '筆電' } }"
-                  >laptop</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  style="--i: 4"
-                  :to="{ name: 'products', params: { category: '耳機' } }"
-                  >audio</router-link
-                >
-              </li>
-            </ul>
-          </li>
-          <li><router-link to="/circle">Product Support</router-link></li>
-          <li><router-link to="/circle">Contact Us</router-link></li>
-        </ul>
-      </div>
-      <div class="header-account">
-        <ul>
-          <li>
-            <router-link to="/login" class="color-link-main" v-if="!login"
-              >登入</router-link
-            >
-            <router-link to="/admin" class="color-link-main" v-else
-              >Hi</router-link
-            >
-          </li>
-          <li class="header-account-cart" @click="cartList">
-            <p class="color-link-main">購物車</p>
-            <span v-if="cartlength">{{ cartlength }}</span>
-            <div class="header-account-cart-list" v-if="cartShow">
-              <ul v-if="cartlength">
+      <div class="header-item" id="menuShow">
+        <div class="header-list">
+          <ul>
+            <li><router-link to="/about">News</router-link></li>
+            <li id="header-list-product">
+              <a href="" @click.prevent="mobileShow"
+                >Products
+                <span :class="{ rotate90: productMobileShow }"
+                  ><img src="~@/assets/images/icon/arrow.png" alt="" /></span
+              ></a>
+              <ul class="header-list-products">
                 <li>
-                  <div class="header-account-cart-list-img">圖片</div>
-                  <div class="header-account-cart-list-txt">名稱/數量</div>
-                  <div class="header-account-cart-list-unit">數量</div>
-                  <div class="header-account-cart-list-btn"></div>
+                  <a href="" style="--i: 1" @click.prevent="pageload('all')"
+                    >All</a
+                  >
                 </li>
-                <li v-for="(item, key) in cart.carts" :key="key">
-                  <div class="header-account-cart-list-img">
-                    <img :src="item.product.image" alt="" />
-                  </div>
-                  <div class="header-account-cart-list-txt">
-                    <p>{{ item.product.title }}</p>
-                  </div>
-                  <div class="header-account-cart-list-unit">
-                    <span>{{ item.qty }}</span>
-                  </div>
-                  <div class="header-account-cart-list-btn">
-                    <button @click="delCart(item.id)">
-                      <svg
-                        id="Layer_1"
-                        enable-background="new 0 0 512 512"
-                        height="24"
-                        viewBox="0 0 512 512"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="del-cart-btn"
+                <li>
+                  <a href="" style="--i: 2" @click.prevent="pageload('滑鼠')"
+                    >Mice</a
+                  >
+                </li>
+                <li>
+                  <a href="" style="--i: 3" @click.prevent="pageload('鍵盤')"
+                    >keyboard</a
+                  >
+                </li>
+                <li>
+                  <a href="" style="--i: 4" @click.prevent="pageload('筆電')"
+                    >laptop</a
+                  >
+                </li>
+                <li>
+                  <a href="" style="--i: 5" @click.prevent="pageload('耳機')"
+                    >audio</a
+                  >
+                </li>
+              </ul>
+              <transition-group name="category">
+                <ul
+                  class="header-list-products-mobile"
+                  key="header-list"
+                  v-if="productMobileShow"
+                >
+                  <li>
+                    <a href="" @click.prevent="pageload('all')">All</a>
+                  </li>
+                  <li>
+                    <a href="" @click.prevent="pageload('滑鼠')">mice</a>
+                  </li>
+                  <li>
+                    <a href="" @click.prevent="pageload('鍵盤')">keyboard</a>
+                  </li>
+                  <li>
+                    <a href="" @click.prevent="pageload('筆電')">laptop</a>
+                  </li>
+                  <li>
+                    <a href="" @click.prevent="pageload('耳機')">audio</a>
+                  </li>
+                </ul>
+              </transition-group>
+            </li>
+            <li><router-link to="/circle">Product Support</router-link></li>
+            <li><router-link to="/circle">Contact Us</router-link></li>
+          </ul>
+        </div>
+        <div class="header-account">
+          <ul>
+            <li>
+              <router-link to="/login" class="color-link-main" v-if="!login"
+                >登入</router-link
+              >
+              <router-link to="/admin" class="color-link-main" v-else>
+                後台
+              </router-link>
+            </li>
+            <li class="header-account-cart" @click="cartList">
+              <p class="color-link-main">購物車</p>
+              <span v-if="cartlength">{{ cartlength }}</span>
+              <div class="header-account-cart-list" v-if="cartShow">
+                <ul v-if="cartlength">
+                  <li>
+                    <div class="header-account-cart-list-img">圖片</div>
+                    <div class="header-account-cart-list-txt">名稱/數量</div>
+                    <div class="header-account-cart-list-unit">數量</div>
+                    <div class="header-account-cart-list-btn"></div>
+                  </li>
+                  <li v-for="(item, key) in cart.carts" :key="key">
+                    <div class="header-account-cart-list-img">
+                      <img :src="item.product.image" alt="" />
+                    </div>
+                    <div class="header-account-cart-list-txt">
+                      <p>{{ item.product.title }}</p>
+                    </div>
+                    <div class="header-account-cart-list-unit">
+                      <span>{{ item.qty }}</span>
+                    </div>
+                    <div class="header-account-cart-list-btn">
+                      <button @click="delCart(item.id)">
+                        <svg
+                          id="Layer_1"
+                          enable-background="new 0 0 512 512"
+                          height="24"
+                          viewBox="0 0 512 512"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="del-cart-btn"
+                        >
+                          <g>
+                            <path
+                              d="m424 64h-88v-16c0-26.467-21.533-48-48-48h-64c-26.467 0-48 21.533-48 48v16h-88c-22.056 0-40 17.944-40 40v56c0 8.836 7.164 16 16 16h8.744l13.823 290.283c1.221 25.636 22.281 45.717 47.945 45.717h242.976c25.665 0 46.725-20.081 47.945-45.717l13.823-290.283h8.744c8.836 0 16-7.164 16-16v-56c0-22.056-17.944-40-40-40zm-216-16c0-8.822 7.178-16 16-16h64c8.822 0 16 7.178 16 16v16h-96zm-128 56c0-4.411 3.589-8 8-8h336c4.411 0 8 3.589 8 8v40c-4.931 0-331.567 0-352 0zm313.469 360.761c-.407 8.545-7.427 15.239-15.981 15.239h-242.976c-8.555 0-15.575-6.694-15.981-15.239l-13.751-288.761h302.44z"
+                            />
+                            <path
+                              d="m256 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
+                            />
+                            <path
+                              d="m336 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
+                            />
+                            <path
+                              d="m176 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </li>
+                  <div class="header-account-cart-list-total">
+                    <div>總金額: {{ cart.final_total }}</div>
+                    <div>
+                      <router-link to="/cart" class="main-btn"
+                        >結帳去</router-link
                       >
-                        <g>
-                          <path
-                            d="m424 64h-88v-16c0-26.467-21.533-48-48-48h-64c-26.467 0-48 21.533-48 48v16h-88c-22.056 0-40 17.944-40 40v56c0 8.836 7.164 16 16 16h8.744l13.823 290.283c1.221 25.636 22.281 45.717 47.945 45.717h242.976c25.665 0 46.725-20.081 47.945-45.717l13.823-290.283h8.744c8.836 0 16-7.164 16-16v-56c0-22.056-17.944-40-40-40zm-216-16c0-8.822 7.178-16 16-16h64c8.822 0 16 7.178 16 16v16h-96zm-128 56c0-4.411 3.589-8 8-8h336c4.411 0 8 3.589 8 8v40c-4.931 0-331.567 0-352 0zm313.469 360.761c-.407 8.545-7.427 15.239-15.981 15.239h-242.976c-8.555 0-15.575-6.694-15.981-15.239l-13.751-288.761h302.44z"
-                          />
-                          <path
-                            d="m256 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
-                          />
-                          <path
-                            d="m336 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
-                          />
-                          <path
-                            d="m176 448c8.836 0 16-7.164 16-16v-208c0-8.836-7.164-16-16-16s-16 7.164-16 16v208c0 8.836 7.163 16 16 16z"
-                          />
-                        </g>
-                      </svg>
-                    </button>
+                    </div>
                   </div>
-                </li>
-                <div class="header-account-cart-list-total">
-                  <div>總金額: {{ cart.final_total }}</div>
-                  <div>
-                    <router-link to="/cart" class="main-btn"
-                      >結帳去</router-link
-                    >
-                  </div>
-                </div>
-              </ul>
-              <ul v-else>
-                <li>目前沒有任何購物車商品</li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+                </ul>
+                <ul v-else>
+                  <li>目前沒有任何購物車商品</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="header-mobile-btn">
+        <button @click="showMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </div>
@@ -173,10 +206,12 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'headers',
+  inject: ['reload'],
   data () {
     return {
       cartShow: false,
-      login: false
+      login: false,
+      productMobileShow: false
     }
   },
   methods: {
@@ -195,6 +230,28 @@ export default {
           vm.login = true
         }
       })
+    },
+    showMenu () {
+      let menu = document.getElementById('menuShow')
+      let btn = document.querySelector('.header-mobile-btn')
+      console.log(btn)
+      if (menu.style.transform === '' || menu.style.transform === 'translateY(-100%)') {
+        menu.style.transform = 'translateY(0%)'
+        btn.classList.add('mobile-btn-active')
+      } else {
+        menu.style.transform = 'translateY(-100%)'
+        btn.classList.remove('mobile-btn-active')
+      }
+    },
+    mobileShow () {
+      let windowWidth = window.innerWidth
+      if (windowWidth <= 768) {
+        this.productMobileShow = !this.productMobileShow
+      }
+    },
+    pageload (page) {
+      this.reload()
+      this.$router.push(`/products/${page}`)
     }
   },
   computed: {

@@ -1,15 +1,10 @@
 <template>
   <div class="wrap">
     <loading :active.sync="isLoading">
-      <div class="loadingio-spinner-spin-vr67c069ls">
-        <div class="ldio-i4ihhev39wf">
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
+      <div class="loadingio-spinner-ripple-bzo8opf0rpm">
+        <div class="ldio-zifyp9wz5z">
+          <div></div>
+          <div></div>
         </div>
       </div>
     </loading>

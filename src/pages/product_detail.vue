@@ -1,15 +1,10 @@
 <template>
   <div class="wrap">
     <loading :active.sync="isLoading">
-      <div class="loadingio-spinner-spin-vr67c069ls">
-        <div class="ldio-i4ihhev39wf">
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
-          <div><div></div></div>
+      <div class="loadingio-spinner-ripple-bzo8opf0rpm">
+        <div class="ldio-zifyp9wz5z">
+          <div></div>
+          <div></div>
         </div>
       </div>
     </loading>
@@ -42,7 +37,12 @@
             </div>
           </div>
           <div class="product_detail-cont-right-btn">
-            <button class="main-btn">Add To Cart</button>
+            <button
+              class="main-btn"
+              @click="addCart(product.id, product.count)"
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>
@@ -160,6 +160,10 @@ export default {
         e.target.value = 1
         alert('最小數量為1 不可為0或是空白')
       }
+    },
+    addCart (id, qty) {
+      console.log(id, qty)
+      this.$store.dispatch('products/addCart', { id, qty })
     }
   },
   computed: {
