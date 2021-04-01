@@ -9,12 +9,6 @@
       </div>
     </loading>
     <div class="content">
-      <div class="recommend">
-        <h4>為您推薦</h4>
-        <div v-for="(item, key) in productsPage" :key="key">
-          {{ item.title }}
-        </div>
-      </div>
       <div class="products">
         <div class="products-category">
           <h4>分類</h4>
@@ -102,7 +96,7 @@
                   </div>
                   <div class="products-cont-item-info">
                     <p>{{ item.title }}</p>
-                    <p>{{ item.description }}</p>
+                    <p>{{ item.content }}</p>
                     <p class="origin-price">原價 ${{ item.price }}</p>
                     <p class="sale-price mb-4">特價 ${{ item.origin_price }}</p>
                     <button
@@ -310,23 +304,29 @@ export default {
     },
     filterProducts () {
       // 監聽網址過濾的分類 進行產品過濾
-      let filter = this.products.filter(res => {
-        if (this.Nowcategory === 'all') {
-          return res
-        } else {
-          return res.category === this.Nowcategory
-        }
-      })
+      // let filter = this.products.filter(res => {
+      //   if (this.Nowcategory === 'all') {
+      //     return res
+      //   } else {
+      //     return res.category === this.Nowcategory
+      //   }
+      // })
+      let array = []
+      if (this.Nowcategory === 'all') {
+        array = this.productsPage
+      } else {
+        array = this.products.filter(item => item.category === this.Nowcategory)
+      }
       if (this.sortBy === 'priceH') {
-        filter.sort((a, b) => {
+        array.sort((a, b) => {
           return b.price - a.price
         })
       } else if (this.sortBy === 'priceL') {
-        filter.sort((a, b) => {
+        array.sort((a, b) => {
           return a.price - b.price
         })
       }
-      return filter
+      return array
     }
   },
   created () {
@@ -337,7 +337,7 @@ export default {
       let clientHeight = document.documentElement.clientHeight
       let scrollHeight = document.documentElement.scrollHeight
       if (scrollTop + clientHeight === scrollHeight) {
-        console.log('到底部了')
+        this.getProductPage()
       }
     })
   }

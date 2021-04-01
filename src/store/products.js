@@ -6,6 +6,7 @@ export default {
     products: [],
     product: [],
     productsPage: [],
+    currentPage: 1,
     category: [],
     cart: [],
     cartLength: '',
@@ -17,7 +18,6 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       context.commit('UPDATELOADING', true, { root: true })
       axios.get(url).then(res => {
-        console.log(res)
         if (res.data.success) {
           Object.keys(res.data.products).forEach(item => {
             res.data.products[item].count = 1
@@ -28,17 +28,22 @@ export default {
         }
       })
     },
-    getProductPage (context, page) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
-      context.commit('UPDATELOADING', true, { root: true })
+    getProductPage ({ commit, state }) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${state.currentPage}`
+      commit('UPDATELOADING', true, { root: true })
+      console.log(state.currentPage)
       axios.get(url).then(res => {
         console.log(res, 'page')
         if (res.data.success) {
           Object.keys(res.data.products).forEach(item => {
             res.data.products[item].count = 1
           })
-          context.commit('PRODUCTSPAGE', res.data.products)
-          context.commit('UPDATELOADING', false, { root: true })
+          if (res.data.pagination.has_next || res.data.pagination.current_page === state.currentPage) {
+            commit('UPDATEPRODUCTPAGE', res.data.products)
+          } else if (res.data.pagination.has_next) {
+            commit('PRODUCTSPAGE', res.data)
+          }
+          commit('UPDATELOADING', false, { root: true })
         }
       })
     },
@@ -125,7 +130,12 @@ export default {
       state.products = payload
     },
     PRODUCTSPAGE (state, payload) {
-      state.productsPage = payload
+      state.productsPage = payload.products
+    },
+    UPDATEPRODUCTPAGE (state, payload) {
+      console.log(payload, 'payload')
+      state.currentPage++
+      state.productsPage = state.productsPage.concat(payload)
     },
     GETPRODUCTDETAIL (state, payload) {
       state.product = payload

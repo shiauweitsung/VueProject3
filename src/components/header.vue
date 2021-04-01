@@ -53,37 +53,37 @@
       <div class="header-item" id="menuShow">
         <div class="header-list">
           <ul>
-            <li><router-link to="/about">News</router-link></li>
+            <li><router-link to="/about">最新消息</router-link></li>
             <li id="header-list-product">
               <a href="" @click.prevent="mobileShow"
-                >Products
+                >產品
                 <span :class="{ rotate90: productMobileShow }"
                   ><img src="~@/assets/images/icon/arrow.png" alt="" /></span
               ></a>
               <ul class="header-list-products">
                 <li>
                   <a href="" style="--i: 1" @click.prevent="pageload('all')"
-                    >All</a
+                    >全部</a
                   >
                 </li>
                 <li>
                   <a href="" style="--i: 2" @click.prevent="pageload('滑鼠')"
-                    >Mice</a
+                    >滑鼠</a
                   >
                 </li>
                 <li>
                   <a href="" style="--i: 3" @click.prevent="pageload('鍵盤')"
-                    >keyboard</a
+                    >鍵盤</a
                   >
                 </li>
                 <li>
                   <a href="" style="--i: 4" @click.prevent="pageload('筆電')"
-                    >laptop</a
+                    >筆電</a
                   >
                 </li>
                 <li>
                   <a href="" style="--i: 5" @click.prevent="pageload('耳機')"
-                    >audio</a
+                    >耳機</a
                   >
                 </li>
               </ul>
@@ -94,25 +94,25 @@
                   v-if="productMobileShow"
                 >
                   <li>
-                    <a href="" @click.prevent="pageload('all')">All</a>
+                    <a href="" @click.prevent="pageload('all')">全部</a>
                   </li>
                   <li>
-                    <a href="" @click.prevent="pageload('滑鼠')">mice</a>
+                    <a href="" @click.prevent="pageload('滑鼠')">滑鼠</a>
                   </li>
                   <li>
-                    <a href="" @click.prevent="pageload('鍵盤')">keyboard</a>
+                    <a href="" @click.prevent="pageload('鍵盤')">鍵盤</a>
                   </li>
                   <li>
-                    <a href="" @click.prevent="pageload('筆電')">laptop</a>
+                    <a href="" @click.prevent="pageload('筆電')">筆電</a>
                   </li>
                   <li>
-                    <a href="" @click.prevent="pageload('耳機')">audio</a>
+                    <a href="" @click.prevent="pageload('耳機')">耳機</a>
                   </li>
                 </ul>
               </transition-group>
             </li>
-            <li><router-link to="/circle">Product Support</router-link></li>
-            <li><router-link to="/circle">Contact Us</router-link></li>
+            <li><router-link to="/circle">產品支援</router-link></li>
+            <li><router-link to="/circle">聯絡我們</router-link></li>
           </ul>
         </div>
         <div class="header-account">

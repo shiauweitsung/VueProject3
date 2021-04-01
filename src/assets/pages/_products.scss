@@ -1,13 +1,8 @@
-.recommend {
-  width: 85%;
-  margin: auto;
-}
-
 .products {
   display: flex;
   width: 85%;
   margin: auto;
-  margin-top: 60px;
+  padding-top: 40px;
 
   &-category {
     max-width: 170px;
@@ -157,8 +152,10 @@
       }
 
       &-info {
+
         &>p {
           margin-bottom: 10px;
+          line-height: 1.2rem;
         }
 
         &>a {

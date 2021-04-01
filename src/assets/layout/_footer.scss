@@ -1,4 +1,56 @@
 .footer {
-  position: fixed;
-  bottom: 0px;
+  background-color: map-get($color, bgproduct);
+  padding: 10px;
+  color: map-get($color, three);
+
+  &-cont {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+
+    &-title {
+      margin-bottom: 10px;
+    }
+
+    &-info {
+      display: flex;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      margin-right: 30px;
+
+      &>a {
+        color: #888;
+        transition: all .3s;
+        margin-bottom: 5px;
+
+        &:hover {
+          color: map-get($color, second);
+        }
+      }
+    }
+  }
+
+  &-bottom {
+    text-align: center;
+
+    &>p:nth-of-type(1) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.footer-link-icon {
+  fill: map-get($color, three);
+  transition: all .3s;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+
+  &:hover {
+    fill: map-get($color, second);
+  }
 }
