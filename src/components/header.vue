@@ -53,7 +53,9 @@
       <div class="header-item" id="menuShow">
         <div class="header-list">
           <ul>
-            <li><router-link to="/about">最新消息</router-link></li>
+            <li>
+              <router-link to="/news">最新消息</router-link>
+            </li>
             <li id="header-list-product">
               <a href="" @click.prevent="mobileShow"
                 >產品
@@ -111,8 +113,8 @@
                 </ul>
               </transition-group>
             </li>
-            <li><router-link to="/circle">產品支援</router-link></li>
-            <li><router-link to="/circle">聯絡我們</router-link></li>
+            <li><router-link to="/product_support">產品支援</router-link></li>
+            <li><router-link to="/contact_us">聯絡我們</router-link></li>
           </ul>
         </div>
         <div class="header-account">
@@ -234,7 +236,6 @@ export default {
     showMenu () {
       let menu = document.getElementById('menuShow')
       let btn = document.querySelector('.header-mobile-btn')
-      console.log(btn)
       if (menu.style.transform === '' || menu.style.transform === 'translateY(-100%)') {
         menu.style.transform = 'translateY(0%)'
         btn.classList.add('mobile-btn-active')
@@ -250,12 +251,17 @@ export default {
       }
     },
     pageload (page) {
-      this.reload()
       this.$router.push(`/products/${page}`)
     }
   },
   computed: {
     ...mapGetters('products', ['cart', 'cartlength'])
+  },
+  watch: {
+    // 監聽路由變更時，執行函式
+    $route () {
+      this.reload()
+    }
   },
   mounted () {
     $(window).scroll(function () {

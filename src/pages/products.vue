@@ -283,6 +283,7 @@ export default {
     }
   },
   mounted () {
+    // 監聽body 滑鼠事件，點擊此元素外的地方 會關閉動元素
     document.addEventListener('mouseup', (e) => {
       this.$nextTick(() => {
         let sort = document.querySelector('.products-cont-title-sort-cont')
@@ -336,8 +337,11 @@ export default {
       let scrollTop = document.documentElement.scrollTop
       let clientHeight = document.documentElement.clientHeight
       let scrollHeight = document.documentElement.scrollHeight
-      if (scrollTop + clientHeight === scrollHeight) {
-        this.getProductPage()
+      let hasNext = this.$store.state.products.hasNext
+      if (hasNext && this.filterProducts.length >= 10) {
+        if (scrollTop + clientHeight === scrollHeight) {
+          this.getProductPage()
+        }
       }
     })
   }

@@ -4,16 +4,24 @@
       <div class="footer-cont-info">
         <div class="footer-cont-item">
           <div class="footer-cont-title">相關連結</div>
-          <router-link to="">最新消息</router-link>
-          <router-link to="">產品支援</router-link>
-          <router-link to="">聯絡我們</router-link>
+          <router-link to="/news">最新消息</router-link>
+          <router-link to="/product_support">產品支援</router-link>
+          <router-link to="/contact_us">聯絡我們</router-link>
         </div>
         <div class="footer-cont-item">
           <div class="footer-cont-title">產品</div>
-          <router-link to="">筆電</router-link>
-          <router-link to="">鍵盤</router-link>
-          <router-link to="">滑鼠</router-link>
-          <router-link to="">耳機</router-link>
+          <router-link :to="{ name: 'products', params: { category: '筆電' } }"
+            >筆電</router-link
+          >
+          <router-link :to="{ name: 'products', params: { category: '鍵盤' } }"
+            >鍵盤</router-link
+          >
+          <router-link :to="{ name: 'products', params: { category: '滑鼠' } }"
+            >滑鼠</router-link
+          >
+          <router-link :to="{ name: 'products', params: { category: '耳機' } }"
+            >耳機</router-link
+          >
         </div>
       </div>
 

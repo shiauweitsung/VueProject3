@@ -7,6 +7,7 @@ export default {
     product: [],
     productsPage: [],
     currentPage: 1,
+    hasNext: false,
     category: [],
     cart: [],
     cartLength: '',
@@ -31,15 +32,14 @@ export default {
     getProductPage ({ commit, state }) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${state.currentPage}`
       commit('UPDATELOADING', true, { root: true })
-      console.log(state.currentPage)
       axios.get(url).then(res => {
-        console.log(res, 'page')
+        // console.log(res, 'page')
         if (res.data.success) {
           Object.keys(res.data.products).forEach(item => {
             res.data.products[item].count = 1
           })
           if (res.data.pagination.has_next || res.data.pagination.current_page === state.currentPage) {
-            commit('UPDATEPRODUCTPAGE', res.data.products)
+            commit('UPDATEPRODUCTPAGE', res.data)
           } else if (res.data.pagination.has_next) {
             commit('PRODUCTSPAGE', res.data)
           }
@@ -133,9 +133,9 @@ export default {
       state.productsPage = payload.products
     },
     UPDATEPRODUCTPAGE (state, payload) {
-      console.log(payload, 'payload')
+      state.hasNext = payload.pagination.has_next
       state.currentPage++
-      state.productsPage = state.productsPage.concat(payload)
+      state.productsPage = state.productsPage.concat(payload.products)
     },
     GETPRODUCTDETAIL (state, payload) {
       state.product = payload

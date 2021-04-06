@@ -34,6 +34,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('../pages/product_detail.vue')
       },
       {
+        path: 'product_support',
+        name: 'product_support',
+        component: () => import('../pages/product_support.vue')
+      },
+      {
         path: 'cart',
         name: 'cart',
         component: () => import('../pages/cart.vue')
@@ -42,6 +47,16 @@ const routes: Array<RouteConfig> = [
         path: 'ordercheck/:id',
         name: 'ordercheck/:id',
         component: () => import('../pages/orderCheck.vue')
+      },
+      {
+        path: 'news',
+        name: 'news',
+        component: () => import('../pages/news.vue')
+      },
+      {
+        path: 'contact_us',
+        name: 'contact_us',
+        component: () => import('../pages/contact_us.vue')
       },
       {
         path: 'circle',
