@@ -66,8 +66,10 @@ export default {
       state.isNew = payload.CouponisNew
       state.moudleCoupon = JSON.parse(JSON.stringify(payload.item))
       // 使用toISOString 轉換格式， 再使用split分割字串成陣列
-      const times = new Date(payload.item.due_date * 1000).toISOString().split('T')
-      state.moudleCoupon.due_date = times[0]
+      if (state.moudleCoupon.due_date) {
+        const times = new Date(payload.item.due_date * 1000).toISOString().split('T')
+        state.moudleCoupon.due_date = times[0]
+      }
     },
     updateMoudleCoupon (state, field) {
       updateField(state.moudleCoupon, field)

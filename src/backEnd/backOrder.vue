@@ -26,7 +26,7 @@
           <td align="center">{{ item.user.tel }}</td>
           <td align="center">{{ item.user.address }}</td>
           <td align="center">
-            <button class="main-btn mr-2" @click="openModal(item)">修改</button>
+            <button class="main-btn" @click="openModal(item)">修改</button>
             <button class="main-btn">刪除</button>
           </td>
         </tr>

@@ -98,7 +98,7 @@ section {
 }
 
 body {
-  line-height: 1;
+  line-height: 1rem;
   background-color: map-get($color, bgMaincolor);
   font-size: 14px;
   color: map-get($color, three);
@@ -202,6 +202,7 @@ textarea {
   width: 100%;
   margin-top: 84px;
   margin-bottom: 80px;
+  min-height: 590px;
 }
 
 .content {

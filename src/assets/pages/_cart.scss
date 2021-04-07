@@ -2,6 +2,10 @@
   max-width: 1200px;
   width: 80%;
   margin: auto;
+
+  @media(max-width: 576px) {
+    width: 95%;
+  }
 }
 
 .cart-banner {
@@ -26,11 +30,23 @@
       margin-right: 30px;
       padding: 15px;
 
-      @media(max-width: 768px) {}
+      @media(max-width: 800px) {
+        max-width: 50%;
+        flex-basis: 50%;
+        margin-right: 0px;
+      }
+    }
+
+    .cart-cont-step-2 {
+      @media(max-width: 800px) {
+        margin: 0px 15px;
+      }
     }
 
     .step_active {
       color: map-get($color, main);
+
+      @media(max-width: 800px) {}
     }
   }
 
@@ -121,6 +137,10 @@
         display: flex;
         border: 1px solid map-get($color, three);
 
+        @media(max-width:412px) {
+          flex-direction: column;
+        }
+
         &>input {
           flex-grow: 1;
           border: transparent;
@@ -131,6 +151,13 @@
           width: 100px;
           color: map-get($color, three);
           transition: all .4s;
+
+          @media(max-width:412px) {
+            width: auto;
+            padding: 10px;
+            text-align: center;
+            display: block;
+          }
 
           &:hover {
             color: map-get($color, main);
@@ -220,10 +247,24 @@
 
   &-table {
     width: 800px;
+    table-layout: fixed;
+    word-break: break-all;
+
+    @media(max-width:1100px) {
+      width: 90%;
+    }
+
+    @media(max-width:768px) {
+      width: 100%;
+    }
 
     &>thead {
       &>td {
         vertical-align: middle;
+      }
+
+      &>td:nth-of-type(1) {
+        padding-left: 20px;
       }
     }
 
@@ -243,5 +284,112 @@
         width: 150px;
       }
     }
+  }
+}
+
+.cart-userinfo {
+  &-txt {
+    width: 60%;
+    margin: auto;
+    border: 1px solid map-get($color, bgproduct);
+    border-radius: 5px;
+    box-shadow: 0px 0px 1rem 1rem map-get($color, bgproduct);
+    padding: 15px;
+    padding-bottom: 0px;
+
+    &>div {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid map-get($color, main);
+    }
+  }
+
+  .paystate {
+    border: transparent;
+    justify-content: space-between;
+
+    &>div {
+      padding: 15px;
+    }
+
+    .nopay {
+      border: 1px solid map-get($color, red);
+      color: map-get($color, red);
+    }
+
+    .ispay {
+      border: 1px solid map-get($color, main);
+      color: map-get($color, main);
+    }
+
+    .paynow {
+      border: 1px solid map-get($color, three);
+      transition: all .4s;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid map-get($color, main);
+        color: map-get($color, main);
+      }
+    }
+
+    .payending {
+      border: 1px solid map-get($color, three);
+      transition: all .4s;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid map-get($color, second);
+
+        &>a {
+          color: map-get($color, second);
+          transition: all .4s;
+        }
+      }
+
+      &>a {
+        color: map-get($color, three);
+      }
+    }
+  }
+}
+
+.cart-goshop {
+  border: 2px solid;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: white;
+  transition: 0.25s;
+  position: relative;
+  animation: pulse 1s infinite;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1em rgba(#fff, 0);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 0 1em rgba(#fff, 0);
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+  }
+
+  &:hover {
+    color: white;
+    border: 1px solid white;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 map-get($color, main);
   }
 }

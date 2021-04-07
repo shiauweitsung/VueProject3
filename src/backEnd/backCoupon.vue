@@ -36,7 +36,7 @@
           <td align="center">
             <button
               @click="openModal(item, (CouponisNew = false))"
-              class="main-btn mr-2"
+              class="main-btn"
             >
               修改
             </button>

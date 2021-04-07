@@ -64,8 +64,9 @@ export default {
         if (res.data.success) {
           context.dispatch('getCart')
           context.commit('UPDATELOADING', false, { root: true })
+          context.dispatch('updateMessage', { message: '添加成功', status: 'success' }, { root: true })
         } else {
-          alert('error')
+          context.dispatch('updateMessage', { message: '添加失敗', status: 'error' }, { root: true })
         }
       })
     },
@@ -105,8 +106,8 @@ export default {
       context.commit('UPDATELOADING', true, { root: true })
       axios.delete(url).then(res => {
         if (res.data.success) {
-          console.log('del')
           context.dispatch('getCart')
+          context.dispatch('updateMessage', { message: '刪除成功', status: 'success' }, { root: true })
         } else {
           alert('刪除錯誤失敗')
         }
@@ -117,8 +118,12 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       context.commit('UPDATELOADING', true, { root: true })
       axios.post(url, { data: coupon }).then(res => {
+        console.log(res)
         if (res.data.success) {
+          context.dispatch('updateMessage', { message: '優惠套用成功', status: 'success' }, { root: true })
           context.dispatch('getCart')
+        } else {
+          context.dispatch('updateMessage', { message: '優惠碼錯誤', status: 'error' }, { root: true })
         }
         context.commit('UPDATELOADING', false, { root: true })
       })

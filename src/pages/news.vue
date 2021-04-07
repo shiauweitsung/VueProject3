@@ -99,15 +99,33 @@
       width: 80%;
       margin: auto;
       max-width: 1200px;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+      @media (max-width: 576px) {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
       &-pic {
         width: 40%;
         & > img {
           width: 100%;
         }
+        @media (max-width: 576px) {
+          width: 80%;
+          margin-bottom: 15px;
+        }
       }
       &-info {
         width: 60%;
         padding-left: 70px;
+        @media (max-width: 576px) {
+          padding-left: 0px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         & > h4 {
           margin-bottom: 15px;
         }
@@ -124,6 +142,7 @@
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
+
       &-list {
         max-width: 35%;
         flex-basis: 35%;
@@ -138,8 +157,12 @@
           display: block;
           text-align: center;
           color: map-get($color, three);
-          line-height: 1rem;
           padding-bottom: 10px;
+          & > img {
+            @media (max-width: 1100px) {
+              width: 100%;
+            }
+          }
         }
       }
     }
@@ -160,7 +183,6 @@
 }
 .commingSoon {
   border: 2px solid;
-  line-height: 1;
   margin: 0.5em;
   padding: 1em 2em;
   color: white;

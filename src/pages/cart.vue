@@ -1,5 +1,6 @@
 <template>
   <div class="wrap">
+    <alert />
     <loading :active.sync="isLoading">
       <div class="loadingio-spinner-ripple-bzo8opf0rpm">
         <div class="ldio-zifyp9wz5z">
@@ -11,7 +12,7 @@
     <div class="content">
       <div class="cart">
         <div class="cart-banner"></div>
-        <div class="cart-cont">
+        <div class="cart-cont" v-if="cart.carts.length">
           <div class="cart-cont-step">
             <div
               class="cart-cont-step-1"
@@ -75,7 +76,7 @@
                     <div>
                       <input
                         type="text"
-                        placeholder="請輸入優惠代碼"
+                        placeholder="請輸入優惠代碼 : 'razer' ，立即折抵5折"
                         v-model="coupon"
                       />
                       <button @click="useCoupon">套用優惠</button>
@@ -168,6 +169,14 @@
                 </form>
               </ValidationObserver>
             </div>
+          </div>
+        </div>
+        <div v-else>
+          <h4 class="text-center m-3">您尚未有購物商品唷</h4>
+          <div class="d-flex justify-content-center m-5">
+            <router-link to="/products/all" class="cart-goshop"
+              >前往購物</router-link
+            >
           </div>
         </div>
       </div>

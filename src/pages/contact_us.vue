@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="content">
-      <h2>聯絡我們</h2>
+      <h3 class="text-center pt-3 mb-5">聯絡我們</h3>
       <div class="contact-us-cont">
         <div class="contact-us-cont-connection">
           <div class="contact-us-cont-connection-chat">
@@ -48,7 +48,11 @@
                 </g>
               </svg>
             </div>
-            <div class="contact-us-cont-connection-txt"></div>
+            <div class="contact-us-cont-connection-txt">
+              <h5>線上聯繫</h5>
+              <p>早上9點 - 下午6點 六日不營業</p>
+              <button class="main-btn">立即聯繫</button>
+            </div>
           </div>
           <div class="contact-us-cont-connection-phone">
             <div class="contact-us-cont-connection-header">
@@ -65,7 +69,13 @@
                 />
               </svg>
             </div>
-            <div class="contact-us-cont-connection-txt"></div>
+            <div class="contact-us-cont-connection-txt">
+              <h5>線上客服</h5>
+              <p>
+                9:00 ~ 12:00 online， 12:00 ~ 13:30 休息 ， 13:30 ~ 18:00 online
+              </p>
+              <p>(02)-1234-5678</p>
+            </div>
           </div>
           <div class="contact-us-cont-connection-email">
             <div class="contact-us-cont-connection-header">
@@ -90,27 +100,55 @@
                 </g>
               </svg>
             </div>
-            <div class="contact-us-cont-connection-txt"></div>
+            <div class="contact-us-cont-connection-txt">
+              <h5>客服信箱</h5>
+              <p>abcdefg@gmail.com</p>
+              <p>
+                信件會在24小時內收到，並回傳一封閱讀信件訊息，客服人員會在48小時內盡速與您聯絡。
+              </p>
+            </div>
           </div>
         </div>
         <div class="contact-us-cont-info">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
+          <p>
+            本地商品購買後，若有產品疑慮與問題，請撥打客服電話聯絡，若想要現場測試或是換貨等服務，可以請洽雷蛇官網尋找服務地址，前往現場服務。
+          </p>
+          <p>請多加善用線上客服與線上聊天室。</p>
         </div>
-        <div class="contact-us-cont-question">
-          <div class="contact-us-cont-question-item">
-            <h3>有問題?</h3>
-            <p>來問問其他使用者吧~</p>
-          </div>
-          <div class="contact-us-cont-question-item">
-            <h3>搜尋問題支援</h3>
-            <div>
-              <button>1</button>
-              <input type="text" placeholder="請輸入你要尋找的問題" />
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="contact-us-question">
+      <div class="contact-us-question-item">
+        <h3>有問題?</h3>
+        <p>來問問其他使用者吧~</p>
+        <button class="main-btn">前往</button>
+      </div>
+      <div class="contact-us-question-item">
+        <h3>搜尋問題支援</h3>
+        <div>
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="Layer_1"
+              x="0px"
+              y="0px"
+              viewBox="0 0 512 512"
+              style="enable-background: new 0 0 512 512"
+              xml:space="preserve"
+              class="contact-search-btn"
+            >
+              <g>
+                <g>
+                  <path
+                    d="M508.875,493.792L353.089,338.005c32.358-35.927,52.245-83.296,52.245-135.339C405.333,90.917,314.417,0,202.667,0    S0,90.917,0,202.667s90.917,202.667,202.667,202.667c52.043,0,99.411-19.887,135.339-52.245l155.786,155.786    c2.083,2.083,4.813,3.125,7.542,3.125c2.729,0,5.458-1.042,7.542-3.125C513.042,504.708,513.042,497.958,508.875,493.792z     M202.667,384c-99.979,0-181.333-81.344-181.333-181.333S102.688,21.333,202.667,21.333S384,102.677,384,202.667    S302.646,384,202.667,384z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </button>
+          <input type="text" placeholder="請輸入你要尋找的問題" />
         </div>
       </div>
     </div>
@@ -123,26 +161,96 @@
   height: 64px;
   fill: map-get($color, three);
   transition: all 0.5s;
-  &:hover {
-    fill: map-get($color, main);
-  }
+  // &:hover {
+  //   fill: map-get($color, main);
+  // }
 }
 .contact-us-cont {
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
   &-connection {
     display: flex;
     justify-content: center;
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: center;
+    }
     & > div {
-      max-width: 25%;
-      flex-basis: 25%;
+      max-width: 33%;
+      flex-basis: 33%;
+      text-align: center;
+      cursor: pointer;
+      @media (max-width: 576px) {
+        max-width: 90%;
+        flex-basis: 90%;
+        margin-bottom: 30px;
+      }
+      &:hover {
+        .contact-us-icon {
+          fill: map-get($color, main);
+        }
+      }
+    }
+    &-txt {
+      & > h5 {
+        margin: 10px;
+      }
+      & > p {
+        margin: 10px;
+      }
     }
   }
-  &-question {
-    display: flex;
-    justify-content: center;
-    &-item {
+  &-info {
+    max-width: 50%;
+    flex-basis: 50%;
+    margin-top: 30px;
+    @media (max-width: 576px) {
+      margin: auto;
+      margin-top: 30px;
+    }
+  }
+}
+.contact-us-question {
+  display: flex;
+  justify-content: center;
+  background-color: map-get($color, bgcolor);
+  margin-top: 30px;
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
+  &-item {
+    max-width: 30%;
+    flex-basis: 30%;
+    padding: 30px;
+    text-align: center;
+    @media (max-width: 900px) {
       max-width: 45%;
       flex-basis: 45%;
     }
+    @media (max-width: 576px) {
+      max-width: 80%;
+      flex-basis: 80%;
+    }
+    & > p {
+      margin: 10px;
+    }
+    & > div {
+      margin: 10px;
+      position: relative;
+      & > input {
+        width: 100%;
+      }
+      & > button {
+        position: absolute;
+        right: 5px;
+        top: 8px;
+      }
+    }
   }
+}
+.contact-search-btn {
+  width: 16px;
+  height: 16px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="wrap">
+    <alert />
     <loading :active.sync="isLoading">
       <div class="loadingio-spinner-ripple-bzo8opf0rpm">
         <div class="ldio-zifyp9wz5z">

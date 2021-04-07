@@ -187,7 +187,7 @@
                   </div>
                 </ul>
                 <ul v-else>
-                  <li>目前沒有任何購物車商品</li>
+                  <li class="nocart">目前沒有任何購物車商品</li>
                 </ul>
               </div>
             </li>
@@ -222,7 +222,12 @@ export default {
       this.$store.dispatch('products/delCart', id)
     },
     cartList () {
-      this.cartShow = !this.cartShow
+      let windowWidth = window.innerWidth
+      if (windowWidth >= 768) {
+        this.cartShow = !this.cartShow
+      } else {
+        this.$router.push('/cart')
+      }
     },
     checkLogin () {
       const vm = this

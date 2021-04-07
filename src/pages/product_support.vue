@@ -89,9 +89,18 @@
   display: flex;
   position: relative;
   width: 800px;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   & > input {
     width: 100%;
     padding: 10px;
+  }
+  & > button {
+    @media (max-width: 768px) {
+      position: absolute;
+      right: -10px;
+    }
   }
 }
 .search-btn {
