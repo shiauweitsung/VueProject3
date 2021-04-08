@@ -134,7 +134,7 @@
                 <ul v-if="cartlength">
                   <li>
                     <div class="header-account-cart-list-img">圖片</div>
-                    <div class="header-account-cart-list-txt">名稱/數量</div>
+                    <div class="header-account-cart-list-txt">名稱</div>
                     <div class="header-account-cart-list-unit">數量</div>
                     <div class="header-account-cart-list-btn"></div>
                   </li>

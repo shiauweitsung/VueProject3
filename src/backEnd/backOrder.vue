@@ -100,7 +100,6 @@ export default {
   methods: {
     ...mapActions('backOrder', ['getOrder']),
     openModal (item) {
-      console.log(item)
       // 將傳進去的物件 進行深拷貝，以面畫面上被渲染
       this.orderModal = JSON.parse(JSON.stringify(item))
       $('#backOrder').modal('show')
@@ -110,7 +109,6 @@ export default {
       const vm = this
       vm.$store.commit('UPDATELOADING', true)
       this.$http.put(url, { data: vm.orderModal }).then(res => {
-        console.log(res)
         if (res.data.success) {
           vm.$store.dispatch('backOrder/getOrder')
         }

@@ -148,6 +148,72 @@
                     <p>配送資訊</p>
                     <span>(必填)</span>
                   </div>
+                  <label for="">收件人地址</label>
+                  <div class="cart-cont-userinfo-address">
+                    <ValidationProvider
+                      name="縣市"
+                      rules="required"
+                      tag="div"
+                      v-slot="{ errors, classes }"
+                      class="cart-cont-userinfo-input"
+                    >
+                      <select
+                        name=""
+                        id="city"
+                        v-model="address.city"
+                        :class="classes"
+                      >
+                        <option value="" selected disabled>請選擇</option>
+                        <option
+                          :value="item.name"
+                          v-for="(item, key) in cities"
+                          :key="key"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <span class="error-txt">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                    <ValidationProvider
+                      name="區"
+                      rules="required"
+                      tag="div"
+                      v-slot="{ errors, classes }"
+                      class="cart-cont-userinfo-input"
+                    >
+                      <select
+                        name=""
+                        id="areas"
+                        v-model="address.areas"
+                        :class="classes"
+                      >
+                        <option value="" selected disabled>請選擇</option>
+                        <option
+                          :value="item.name"
+                          v-for="(item, i) in areas.areas"
+                          :key="i"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <span class="error-txt">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                    <ValidationProvider
+                      name="地址"
+                      rules="required"
+                      tag="div"
+                      v-slot="{ errors, classes }"
+                      class="cart-cont-userinfo-input"
+                    >
+                      <input
+                        v-model="address.address"
+                        type="text"
+                        :class="classes"
+                        placeholder="請輸入地址"
+                      />
+                      <span class="error-txt">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  </div>
                   <div class="cart-cont-userinfo-title">
                     <p>留言備註</p>
                     <span>(選填)</span>
@@ -185,6 +251,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import city from '../citys.json'
 export default {
   name: 'cart',
   data () {
@@ -194,6 +261,11 @@ export default {
       userForm: {
         user: {},
         message: ''
+      },
+      address: {
+        city: '',
+        areas: '',
+        address: ''
       },
       coupon: ''
     }
@@ -208,6 +280,7 @@ export default {
           return true
         }
         this.$store.dispatch('updateLoading', true)
+        this.userForm.user.address = this.address.city + this.address.areas + this.address.address
         this.$http.post(url, { data: this.userForm }).then(res => {
           if (res.data.success) {
             this.$store.dispatch('updateLoading', false)
@@ -225,7 +298,20 @@ export default {
   },
   computed: {
     ...mapGetters('products', ['cart']),
-    ...mapGetters(['isLoading'])
+    ...mapGetters(['isLoading']),
+    cities () {
+      return city
+    },
+    areas () {
+      if (this.address.city === '') {
+        return {}
+      } else {
+        const find = city.find(res => {
+          return res.name === this.address.city
+        })
+        return find
+      }
+    }
   }
 }
 </script>
