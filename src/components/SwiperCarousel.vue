@@ -45,7 +45,7 @@ export default {
   props: ['swiperOption']
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" scope>
 .swiper-container {
   width: 100%;
   height: 100%;
@@ -73,5 +73,16 @@ export default {
   & > img {
     max-width: 100%;
   }
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: #34e89e !important;
+}
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #34e89e !important;
 }
 </style>

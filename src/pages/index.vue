@@ -6,7 +6,7 @@
         <h4 class="mt-5 text-center">推薦筆電</h4>
         <div class="index-content-laptop">
           <div class="index-content-laptop-item laptop-item1">
-            <router-link to="/">
+            <router-link to="/products/筆電">
               <div class="index-content-laptop-item-img">
                 <img
                   src="@/assets/images/products/laptop/Razer Blade 15 Base Edition - Full HD 120Hz - GeForce GTX 1660 Ti - Black.png"
@@ -26,7 +26,7 @@
             </router-link>
           </div>
           <div class="index-content-laptop-item laptop-item2">
-            <router-link to="/">
+            <router-link to="/products/筆電">
               <div class="index-content-laptop-item-img">
                 <img
                   src="@/assets/images/products/laptop/Razer Blade 15 Base Edition - OLED 4K 60Hz - GeForce RTX 2070 Max-Q - Mercury.png"
@@ -46,7 +46,7 @@
             </router-link>
           </div>
           <div class="index-content-laptop-item laptop-item3">
-            <router-link to="/">
+            <router-link to="/products/筆電">
               <div class="index-content-laptop-item-img">
                 <img
                   src="@/assets/images/products/laptop/Razer Blade 15 Base Edition - QHD 165Hz - GeForce RTX 3070 - Black.png"
@@ -69,145 +69,167 @@
         <h4 class="mt-5 text-center">推薦滑鼠</h4>
         <div class="index-content-mouse mt">
           <div class="index-content-mouse-item mouse-item1">
-            <div class="index-content-mouse-item-img">
-              <img
-                src="@/assets/images/products/mouse/Razer Basilisk V2.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-mouse-item-txt">
-              <h4>Razer Basilisk V2</h4>
-              <ul>
-                <li>11 顆可編程按鍵</li>
-                <li>可自訂滾輪阻力</li>
-                <li>Razer 光學滑鼠按鍵軸</li>
-                <li>Razer Focus+ 光學感測器</li>
-                <li>Razer Speedflex 纜線</li>
-              </ul>
-            </div>
+            <router-link to="/products/滑鼠">
+              <div class="index-content-mouse-item-img">
+                <img
+                  src="@/assets/images/products/mouse/Razer Basilisk V2.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-mouse-item-txt">
+                <h4>Razer Basilisk V2</h4>
+                <ul>
+                  <li>11 顆可編程按鍵</li>
+                  <li>可自訂滾輪阻力</li>
+                  <li>Razer 光學滑鼠按鍵軸</li>
+                  <li>Razer Focus+ 光學感測器</li>
+                  <li>Razer Speedflex 纜線</li>
+                </ul>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-mouse-item mouse-item2">
-            <div class="index-content-mouse-item-img">
-              <img
-                src="@/assets/images/products/mouse/Razer Mamba Elite.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-mouse-item-txt">
-              <h4>Razer Mamba Elite</h4>
-              <ul>
-                <li>Razer 5G 高階光學感測器</li>
-                <li>更大的 Razer Chroma™ 發光區域</li>
-                <li>最高可承受 5000 萬次點擊</li>
-                <li>進階人體工學設計加上經過改良的側握</li>
-                <li>9 顆可編程按鍵</li>
-              </ul>
-            </div>
+            <router-link to="/products/滑鼠">
+              <div class="index-content-mouse-item-img">
+                <img
+                  src="@/assets/images/products/mouse/Razer Mamba Elite.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-mouse-item-txt">
+                <h4>Razer Mamba Elite</h4>
+                <ul>
+                  <li>Razer 5G 高階光學感測器</li>
+                  <li>更大的 Razer Chroma™ 發光區域</li>
+                  <li>最高可承受 5000 萬次點擊</li>
+                  <li>進階人體工學設計加上經過改良的側握</li>
+                  <li>9 顆可編程按鍵</li>
+                </ul>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-mouse-item mouse-item3">
-            <div class="index-content-mouse-item-img">
-              <img
-                src="@/assets/images/products/mouse/Razer Viper 8KHz.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-mouse-item-txt">
-              <h4>Razer Viper 8KHz</h4>
-              <ul>
-                <li>Razer™ HyperPolling 技術，帶來最敏捷的反應速度</li>
-                <li>第 2 代 Razer™ 光學滑鼠按鍵軸，失誤零容忍</li>
-                <li>Razer™ Focus+ 光學感測器，提供不同凡響的準確度</li>
-                <li>71 公克輕量設計，使用起來更加流暢不費力</li>
-              </ul>
-            </div>
+            <router-link to="/products/滑鼠">
+              <div class="index-content-mouse-item-img">
+                <img
+                  src="@/assets/images/products/mouse/Razer Viper 8KHz.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-mouse-item-txt">
+                <h4>Razer Viper 8KHz</h4>
+                <ul>
+                  <li>Razer™ HyperPolling 技術，帶來最敏捷的反應速度</li>
+                  <li>第 2 代 Razer™ 光學滑鼠按鍵軸，失誤零容忍</li>
+                  <li>Razer™ Focus+ 光學感測器，提供不同凡響的準確度</li>
+                  <li>71 公克輕量設計，使用起來更加流暢不費力</li>
+                </ul>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-mouse-item mouse-item4">
-            <div class="index-content-mouse-item-img">
-              <img
-                src="@/assets/images/products/mouse/Razer DeathAdder V2 Pro.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-mouse-item-txt">
-              <h4>Razer DeathAdder V2 Pro</h4>
-              <ul>
-                <li>Razer™ HyperSpeed Wireless 技術，連線速度超越有線滑鼠</li>
-                <li>Razer™ Focus+ 20K DPI 光學感測器，提供不同凡響的準確度</li>
-                <li>第 2 代 Razer™ 光學滑鼠按鍵軸，提供光速般的觸發速度</li>
-              </ul>
-            </div>
+            <router-link to="/products/滑鼠">
+              <div class="index-content-mouse-item-img">
+                <img
+                  src="@/assets/images/products/mouse/Razer DeathAdder V2 Pro.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-mouse-item-txt">
+                <h4>Razer DeathAdder V2 Pro</h4>
+                <ul>
+                  <li>Razer™ HyperSpeed Wireless 技術，連線速度超越有線滑鼠</li>
+                  <li>
+                    Razer™ Focus+ 20K DPI 光學感測器，提供不同凡響的準確度
+                  </li>
+                  <li>第 2 代 Razer™ 光學滑鼠按鍵軸，提供光速般的觸發速度</li>
+                </ul>
+              </div>
+            </router-link>
           </div>
         </div>
         <h4 class="mt-5 text-center">推薦鍵盤</h4>
         <div class="index-content-keyboard">
           <div class="index-content-keyboard-item keyboard-item1">
-            <div class="index-content-keyboard-item-img">
-              <img
-                src="@/assets/images/products/keyboard/Razer BlackWidow Tournament Edition Chroma V2.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-keyboard-item-txt">
-              <h4>Razer BlackWidow</h4>
-            </div>
+            <router-link to="/products/鍵盤">
+              <div class="index-content-keyboard-item-img">
+                <img
+                  src="@/assets/images/products/keyboard/Razer BlackWidow Tournament Edition Chroma V2.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-keyboard-item-txt">
+                <h4>Razer BlackWidow</h4>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-keyboard-item keyboard-item2">
-            <div class="index-content-keyboard-item-img">
-              <img
-                src="@/assets/images/products/keyboard/Razer BlackWidow V3 - Green Switch - US - Quartz.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-keyboard-item-txt">
-              <h4>Razer BlackWidow V3</h4>
-            </div>
+            <router-link to="/products/鍵盤">
+              <div class="index-content-keyboard-item-img">
+                <img
+                  src="@/assets/images/products/keyboard/Razer BlackWidow V3 - Green Switch - US - Quartz.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-keyboard-item-txt">
+                <h4>Razer BlackWidow V3</h4>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-keyboard-item keyboard-item3">
-            <div class="index-content-keyboard-item-img">
-              <img
-                src="@/assets/images/products/keyboard/Razer Huntsman Elite - Linear Optical Switch - US.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-mouse-item-txt">
-              <h4>Razer Huntsman Elite</h4>
-            </div>
+            <router-link to="/products/鍵盤">
+              <div class="index-content-keyboard-item-img">
+                <img
+                  src="@/assets/images/products/keyboard/Razer Huntsman Elite - Linear Optical Switch - US.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-mouse-item-txt">
+                <h4>Razer Huntsman Elite</h4>
+              </div>
+            </router-link>
           </div>
         </div>
         <h4 class="mt-5 text-center">推薦耳機</h4>
         <div class="index-content-audio">
           <div class="index-content-audio-item audio-item1">
-            <div class="index-content-audio-item-img">
-              <img
-                src="@/assets/images/products/audio/Razer Kraken BT Kitty Edition.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-audio-item-txt">
-              <h4>Razer Kraken BT Kitty Edition</h4>
-            </div>
+            <router-link to="/products/耳機">
+              <div class="index-content-audio-item-img">
+                <img
+                  src="@/assets/images/products/audio/Razer Kraken BT Kitty Edition.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-audio-item-txt">
+                <h4>Razer Kraken BT Kitty Edition</h4>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-audio-item audio-item2">
-            <div class="index-content-audio-item-img">
-              <img
-                src="@/assets/images/products/audio/Razer Kraken Kitty - Black.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-audio-item-txt">
-              <h4>Razer Kraken Kitty - Black</h4>
-            </div>
+            <router-link to="/products/耳機">
+              <div class="index-content-audio-item-img">
+                <img
+                  src="@/assets/images/products/audio/Razer Kraken Kitty - Black.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-audio-item-txt">
+                <h4>Razer Kraken Kitty - Black</h4>
+              </div>
+            </router-link>
           </div>
           <div class="index-content-audio-item audio-item3">
-            <div class="index-content-audio-item-img">
-              <img
-                src="@/assets/images/products/audio/Razer Nari Ultimate.png"
-                alt=""
-              />
-            </div>
-            <div class="index-content-audio-item-txt">
-              <h4>Razer Nari Ultimate</h4>
-            </div>
+            <router-link to="/products/耳機">
+              <div class="index-content-audio-item-img">
+                <img
+                  src="@/assets/images/products/audio/Razer Nari Ultimate.png"
+                  alt=""
+                />
+              </div>
+              <div class="index-content-audio-item-txt">
+                <h4>Razer Nari Ultimate</h4>
+              </div>
+            </router-link>
           </div>
         </div>
         <h4 class="mt-5 text-center">市場調查</h4>
@@ -279,29 +301,24 @@ export default {
   data () {
     return {
       swiperOption: {
-        swiperData: [
-          {
-            img: 'https://picsum.photos/2000?random=1'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=2'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=3'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=4'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=5'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=6'
-          },
-          {
-            img: 'https://picsum.photos/2000?random=7'
-          }
-        ],
+        // swiperData: [
+        //   {
+        //     img: require('../assets/images/banner/banner1.jpg')
+        //   },
+        //   {
+        //     img: require('../assets/images/banner/banner2.jpg')
+        //   },
+        //   {
+        //     img: require('../assets/images/banner/banner3.jpg')
+        //   },
+        //   {
+        //     img: require('../assets/images/banner/banner4.jpg')
+        //   },
+        //   {
+        //     img: require('../assets/images/banner/banner5.jpg')
+        //   }
+        // ],
+        swiperData: [],
         swiperOptions: {
           spaceBetween: 30,
           centeredSlides: true,
@@ -324,13 +341,13 @@ export default {
           // response setting
           breakpoints: {
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 1,
               spaceBetween: 50
             }
           }
         },
         swiperWrap: 'swiperWrap',
-        swiperClass: 'swiperClassName',
+        swiperClass: 'swiper-index-banner',
         // navigation show
         navigation: {
           prev: true,
@@ -347,6 +364,46 @@ export default {
       }
     }
   },
+  created () {
+    let windowWidth = window.innerWidth
+    if (windowWidth > 768) {
+      this.swiperOption.swiperData = [
+        {
+          img: require('../assets/images/banner/banner1.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner2.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner3.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner4.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner5.jpg')
+        }
+      ]
+    } else {
+      this.swiperOption.swiperData = [
+        {
+          img: require('../assets/images/banner/banner1-mob.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner2-mob.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner3-mob.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner4-mob.jpg')
+        },
+        {
+          img: require('../assets/images/banner/banner5-mob.jpg')
+        }
+      ]
+    }
+  },
   mounted () {
     let windowWidth = document.documentElement.clientWidth
     const controller = new ScrollMagic.Controller()
@@ -359,7 +416,6 @@ export default {
       triggerHook: 0.4,
       reverse: false
     })
-      .addIndicators()
       .setTween(t2)
       .addTo(controller)
     // 鍵盤
@@ -370,7 +426,6 @@ export default {
       triggerHook: 0.4,
       reverse: false
     })
-      .addIndicators()
       .setTween(t3)
       .addTo(controller)
     if (windowWidth > 768) {
@@ -390,7 +445,6 @@ export default {
         triggerHook: 0.4,
         reverse: false
       })
-        .addIndicators()
         .setTween(t4)
         .addTo(controller)
       // 進度條
@@ -425,7 +479,6 @@ export default {
         triggerHook: 0.8,
         reverse: false
       })
-        .addIndicators()
         .setTween(t5)
         .addTo(controller)
     } else {
@@ -442,7 +495,6 @@ export default {
         triggerHook: 0.4,
         reverse: false
       })
-        .addIndicators()
         .setTween(t4)
         .addTo(controller)
       let circle = $('.circleBar')
@@ -476,12 +528,15 @@ export default {
         triggerHook: 0.8,
         reverse: false
       })
-        .addIndicators()
         .setTween(t10)
         .addTo(controller)
     }
   }
 }
 </script>
-<style scoped lang="scss" >
+<style scope lang="scss" >
+.swiper-index-banner {
+  background-color: #000 !important;
+  height: auto !important;
+}
 </style>

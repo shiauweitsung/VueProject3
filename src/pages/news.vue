@@ -1,12 +1,16 @@
 <template>
   <div class="wrap">
-    <div class="banner">
+    <div class="news-banner">
       <img
-        src="~@/assets/images/banner/banner11.jpg"
+        src="~@/assets/images/banner/banner1.jpg"
         alt=""
-        style="width: 100%; height: 430px"
+        class="news-banner-img"
       />
-      <p>全新世代，全新科技，最上手的產品</p>
+      <img
+        src="~@/assets/images/banner/banner1-mob.jpg"
+        alt=""
+        class="news-banner-img-mob"
+      />
     </div>
     <div class="content">
       <div class="news-cont">
@@ -92,6 +96,20 @@
 </template>
 <style lang="scss">
 @import '~@/assets/all.scss';
+.news-banner-img {
+  width: 100%;
+  height: 430px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  &-mob {
+    width: 100%;
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+}
 .news-cont {
   &-item {
     &-newpro {

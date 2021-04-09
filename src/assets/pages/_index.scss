@@ -97,6 +97,7 @@
 
       &-txt {
         padding: 0px 15px;
+        color: map-get($color, three);
 
         &>ul {
           padding-left: 15px;
@@ -139,7 +140,12 @@
         }
       }
 
-      &-txt {}
+      &-txt {
+        &>h4 {
+          color: map-get($color, three);
+          text-align: center;
+        }
+      }
     }
   }
 
@@ -173,7 +179,12 @@
         }
       }
 
-      &-txt {}
+      &-txt {
+        &>h4 {
+          color: map-get($color, three);
+          text-align: center;
+        }
+      }
     }
 
     &-item:nth-child(1) {
