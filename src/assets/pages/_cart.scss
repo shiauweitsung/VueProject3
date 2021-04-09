@@ -257,19 +257,33 @@
     &-address {
       display: flex;
       align-items: baseline;
-
+        @media(max-width: 576px){
+          flex-wrap:wrap;
+        }
       &>div {
         max-width: 25%;
         flex-basis: 25%;
+        @media(max-width: 576px){
+          max-width: 45%;
+          flex-basis: 45%;
+        }
       }
 
       &>div:nth-of-type(2) {
         margin: 0px 30px;
+        @media(max-width: 576px){
+          margin: 0px;
+          margin-left: 20px;
+        }
       }
 
       &>div:nth-last-of-type(1) {
         max-width: 50%;
         flex-basis: 50%;
+        @media(max-width: 576px){
+          max-width: 100%;
+          flex-basis: 100%;
+        }
       }
     }
   }

@@ -413,7 +413,7 @@ export default {
       .staggerFromTo('.index-content-mouse-item-txt', 1, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' }, 0.5)
     new ScrollMagic.Scene({
       triggerElement: '.index-content-mouse',
-      triggerHook: 0.4,
+      triggerHook: 0.8,
       reverse: false
     })
       .setTween(t2)
@@ -423,7 +423,7 @@ export default {
       .staggerFromTo('.index-content-keyboard-item', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' }, 0.5)
     new ScrollMagic.Scene({
       triggerElement: '.index-content-keyboard',
-      triggerHook: 0.4,
+      triggerHook: 0.6,
       reverse: false
     })
       .setTween(t3)
@@ -442,7 +442,7 @@ export default {
         .fromTo('.audio-item1', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
       new ScrollMagic.Scene({
         triggerElement: '.index-content-audio',
-        triggerHook: 0.4,
+        triggerHook: 0.6,
         reverse: false
       })
         .setTween(t4)
@@ -492,7 +492,7 @@ export default {
         .fromTo('.audio-item3', 0.5, { autoAlpha: 0, y: '200' }, { autoAlpha: 1, y: '0' })
       new ScrollMagic.Scene({
         triggerElement: '.index-content-audio',
-        triggerHook: 0.4,
+        triggerHook: 0.6,
         reverse: false
       })
         .setTween(t4)
@@ -503,7 +503,7 @@ export default {
       }
       const t10 = new TimelineMax()
         .fromTo('.index-content-progressbar-circle', 0.5, { autoAlpha: 0, y: '-200' }, { autoAlpha: 1, y: '0' })
-        .fromTo('.index-content-progressbar-right', 0.5, { autoAlpha: 0, x: '200', ease: 'Power0.easeInOut' },
+        .fromTo('.index-content-progressbar-right', 0.5, { autoAlpha: 0, y: '0', ease: 'Power0.easeInOut' },
           {
             autoAlpha: 1,
             x: '0'

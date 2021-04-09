@@ -105,6 +105,9 @@
         bottom: 35px;
         margin-right: 15px;
       }
+      @media(max-width: 412px){
+        bottom: -50px;
+      }
     }
   }
 }

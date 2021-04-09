@@ -3,7 +3,7 @@
     <div class="header-wrap">
       <div class="header-icon">
         <h1 class="text-center">
-          <a href="/">
+          <router-link to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -47,7 +47,7 @@
               <g></g>
               <g></g>
             </svg>
-          </a>
+          </router-link>
         </h1>
       </div>
       <div class="header-item" id="menuShow">

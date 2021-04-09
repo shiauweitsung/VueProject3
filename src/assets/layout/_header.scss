@@ -39,6 +39,10 @@
 
     &-img {
       fill: map-get($color, three);
+      @media(max-width:576px){
+        width: 45px;
+        height: 45px;
+      }
     }
   }
 
